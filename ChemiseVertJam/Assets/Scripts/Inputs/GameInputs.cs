@@ -71,6 +71,15 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectObject"",
+                    ""type"": ""Value"",
+                    ""id"": ""75023385-a5b0-448e-a778-ba83240fc1c9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +216,72 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""93bbfc25-4ca3-41ba-9ee9-d733ef06d0d5"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4148334f-2628-4785-a035-69f391577c81"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""61f97c0c-f4f4-410d-a6fa-85c6904ea910"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""60b6b90d-068c-49e2-aee3-375e571c88f0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""33b5a7de-1293-4121-8a97-593237a77e1f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""bb137c9a-14f0-4b96-acf3-7deb73872ef3"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""bc3e78fe-09fd-4229-b8bc-081e3556aa7d"",
                     ""path"": ""<Gamepad>/start"",
@@ -240,6 +315,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         m_InGame_TemporaryLight = m_InGame.FindAction("TemporaryLight", throwIfNotFound: true);
         m_InGame_StopPlayer = m_InGame.FindAction("StopPlayer", throwIfNotFound: true);
         m_InGame_PauseGame = m_InGame.FindAction("PauseGame", throwIfNotFound: true);
+        m_InGame_SelectObject = m_InGame.FindAction("SelectObject", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +382,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_TemporaryLight;
     private readonly InputAction m_InGame_StopPlayer;
     private readonly InputAction m_InGame_PauseGame;
+    private readonly InputAction m_InGame_SelectObject;
     public struct InGameActions
     {
         private @GameInputs m_Wrapper;
@@ -315,6 +392,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         public InputAction @TemporaryLight => m_Wrapper.m_InGame_TemporaryLight;
         public InputAction @StopPlayer => m_Wrapper.m_InGame_StopPlayer;
         public InputAction @PauseGame => m_Wrapper.m_InGame_PauseGame;
+        public InputAction @SelectObject => m_Wrapper.m_InGame_SelectObject;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +417,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
+            @SelectObject.started += instance.OnSelectObject;
+            @SelectObject.performed += instance.OnSelectObject;
+            @SelectObject.canceled += instance.OnSelectObject;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -358,6 +439,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
+            @SelectObject.started -= instance.OnSelectObject;
+            @SelectObject.performed -= instance.OnSelectObject;
+            @SelectObject.canceled -= instance.OnSelectObject;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -382,5 +466,6 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         void OnTemporaryLight(InputAction.CallbackContext context);
         void OnStopPlayer(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnSelectObject(InputAction.CallbackContext context);
     }
 }
