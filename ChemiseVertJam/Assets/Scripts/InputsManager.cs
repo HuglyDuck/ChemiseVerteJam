@@ -21,16 +21,17 @@ public class InputsManager : MonoBehaviour
     private void OnEnable()
     {
         _inputActions.InGame.Enable();
-        _selectValue = _inputActions.InGame.SelectObject.ReadValue<float>();
+        
         _inputActions.InGame.SelectObject.performed += SelectObject_performed;
     }
 
     private void SelectObject_performed(InputAction.CallbackContext context)
     {
-        if(_selectValue > 0)
+        _selectValue = _inputActions.InGame.SelectObject.ReadValue<float>();
+
+        if (_selectValue > 0)
         {
             SelectObjectAdd();
-
         }
         else
         {
@@ -40,27 +41,57 @@ public class InputsManager : MonoBehaviour
 
     private void SelectObjectAdd()
     {
-        if (_objectValue <= _interactObjectList.Count - 1)
+        if (_objectValue >= _interactObjectList.Count - 1)
         {
-            _objectValue = _interactObjectList.Count - 1;
+            _objectValue = 0;
         }
         else
         {
-
+            OnDesactive();
             _objectValue++;
+            OnActive();
         }
     }
 
     private void SelectObjectSub()
     {
-        if (_objectValue >= 0)
+        if (_objectValue <= 0)
         {
-            _objectValue = 0;
+            _objectValue = _interactObjectList.Count - 1;
         }
-        else _objectValue--;
+        else
+        {
+            OnDesactive();
+            _objectValue--;
+            OnActive();
+        }
     }
 
+    private void OnActive()
+    {
+       if( _interactObjectList[_objectValue].TryGetComponent(out ActivateSelected _scriptActivateSelected))
+        {
+            _scriptActivateSelected.Activate();
+        }
+    }
 
+    private void OnDesactive()
+    {
+        if (_interactObjectList[_objectValue].TryGetComponent(out ActivateSelected _scriptActivateSelected))
+        {
+            _scriptActivateSelected.Desactivate();
+        }
+    }
+    private void OnSelectedObject(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    private void Update()
+    {
+        
+        Debug.Log(_objectValue);
+    }
 
     private void OnDisable()
     {
