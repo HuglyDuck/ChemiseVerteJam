@@ -6,7 +6,7 @@ public class MovingLights : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     [SerializeField] private Transform _player;
-    private bool _lookAtPlayer;
+    private bool _lookAtPlayer = true;
 
     private void Update()
     {
