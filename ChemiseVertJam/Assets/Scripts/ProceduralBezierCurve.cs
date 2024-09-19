@@ -6,13 +6,16 @@ public class ProceduralBezierCurve : MonoBehaviour
     #region VARIABLES
     [Header("Spline Params")]
     [SerializeField] private List<Transform> _controlPoints;
+    [SerializeField] private float _splineSpeed;
 
     [Header("Debug")]
-    [SerializeField][Range(0, 1)] private float _splineProgress = 0f; 
+    [Range(0, 1)] public float _splineProgress = 0f; 
     [SerializeField][Range(1, 100)] private int _splineResolution = 20;
+    public AnimationCurve _curve;
     #endregion
 
     public List<Transform> ControlPoints => _controlPoints;
+    public float SplineSpeed => _splineSpeed;
 
     #region SPLINE_UTILITIES
     public static Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)

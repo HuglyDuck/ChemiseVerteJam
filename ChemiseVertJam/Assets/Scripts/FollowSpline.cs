@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class FollowSpline : MonoBehaviour
 {
@@ -9,12 +10,28 @@ public class FollowSpline : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private List<ProceduralBezierCurve> _splines;
+    private GameInputs _inputs;
 
     private int _currentSplineIndex = 0;
     private float _splineProgress = 0f;
-    private Vector3 _previousPosition; 
+    private Vector3 _previousPosition;
+    private bool _canMove = true;
     #endregion
 
+    private void Awake()
+    {
+        _inputs = new GameInputs();
+    }
+    private void OnEnable()
+    {
+        _inputs.InGame.StopPlayer.Enable();
+        _inputs.InGame.StopPlayer.performed += StopMovement;
+    }
+    private void OnDisable()
+    {
+        _inputs.InGame.StopPlayer.Disable();
+        _inputs.InGame.StopPlayer.performed -= StopMovement;
+    }
     void Start()
     {
         if (_splines == null || _splines.Count == 0)
@@ -28,7 +45,10 @@ public class FollowSpline : MonoBehaviour
 
     void Update()
     {
-        MoveAlongSpline();
+        if (_canMove)
+        {
+            MoveAlongSpline(); 
+        }
     }
     #region MOVEMENT_LOGIC
     private void MoveAlongSpline()
@@ -38,6 +58,7 @@ public class FollowSpline : MonoBehaviour
             float distanceToMove = _speed * Time.deltaTime;
             _splineProgress += distanceToMove / _splines[_currentSplineIndex].ControlPoints.Count;
             _splineProgress = Mathf.Clamp01(_splineProgress);
+            distanceToMove *= _splines[_currentSplineIndex]._curve.Evaluate(_splineProgress);//TO CORRECT
 
             Vector3 newPosition = ProceduralBezierCurve.GetPositionOnSpline(_splineProgress, _splines[_currentSplineIndex].ControlPoints);
 
@@ -73,5 +94,9 @@ public class FollowSpline : MonoBehaviour
             _previousPosition = ProceduralBezierCurve.GetPositionOnSpline(_splineProgress, _splines[_currentSplineIndex].ControlPoints);
             transform.position = _previousPosition;
         }
+    }
+    private void StopMovement(InputAction.CallbackContext ctx)
+    {
+        _canMove = !_canMove;
     }
 }

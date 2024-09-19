@@ -31,7 +31,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""name"": ""SideMove"",
                     ""type"": ""Value"",
                     ""id"": ""1b473728-b0cc-427d-880d-9d9c9f550e2b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -76,8 +76,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""91bbf492-2c1f-42c9-9d4e-94fbbe25794b"",
-                    ""path"": ""2DVector"",
+                    ""id"": ""a9b89509-2723-41dc-9242-f3d74adcc104"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -86,9 +86,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""d937614b-ddd0-441f-96b3-5db3e77e4021"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""name"": ""negative"",
+                    ""id"": ""1960a2d1-e573-41be-a171-b33e8610ef4e"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -97,9 +97,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""ec87f7db-1585-494a-bf89-55d72f4f07ab"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""name"": ""positive"",
+                    ""id"": ""85b8bfe4-66ea-4a9b-9c5d-7ed6dc95e4db"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -109,8 +109,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Keyboard"",
-                    ""id"": ""103afda8-6ec4-4e6a-b307-69f5993afef4"",
-                    ""path"": ""2DVector"",
+                    ""id"": ""87e8b733-6ffe-43d0-8e41-d973100eb017"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -119,8 +119,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""4ad9baa7-f292-4af1-be8c-d8eae40f7308"",
+                    ""name"": ""negative"",
+                    ""id"": ""f5afed17-fa26-4315-8018-c8fda0e0e6ac"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -130,8 +130,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""5f55b049-b9f7-4f27-af8e-3d2bf6c67b40"",
+                    ""name"": ""positive"",
+                    ""id"": ""6aba0ee8-9fde-4b3d-b682-c3c9bd76c277"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
