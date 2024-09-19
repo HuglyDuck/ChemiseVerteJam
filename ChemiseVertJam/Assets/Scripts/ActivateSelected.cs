@@ -4,15 +4,61 @@ using UnityEngine;
 
 public class ActivateSelected : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ETypeScript _typeScript = ETypeScript.ObjectMovement; 
+
+    public void Activate()
     {
-        
+        switch (_typeScript)
+        {
+            case ETypeScript.ObjectMovement:
+                if( TryGetComponent( out ObjectMovement _scriptObjectMovement))
+                {
+                    _scriptObjectMovement.enabled = true;
+                }
+
+                break;
+            case ETypeScript.SwitchLight:
+                if (TryGetComponent(out LightSwitch _scriptLightSwitch))
+                {
+                    _scriptLightSwitch.enabled = true;
+                }
+
+                break;
+            case ETypeScript.DownLight:
+
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Desactivate()
     {
-        
+        switch (_typeScript)
+        {
+            case ETypeScript.ObjectMovement:
+                if (TryGetComponent(out ObjectMovement _scriptObjectMovement))
+                {
+                    _scriptObjectMovement.enabled = false;
+                }
+
+                break;
+            case ETypeScript.SwitchLight:
+                if (TryGetComponent(out LightSwitch _scriptLightSwitch))
+                {
+                    _scriptLightSwitch.enabled = false;
+                }
+
+                break;
+            case ETypeScript.DownLight:
+
+                break;
+        }
     }
+
+   
+}
+public enum ETypeScript
+{
+    ObjectMovement,
+    SwitchLight,
+    DownLight
 }

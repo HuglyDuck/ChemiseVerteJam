@@ -46,7 +46,10 @@ public class InputsManager : MonoBehaviour
         }
         else
         {
+<<<<<<< Updated upstream
             //OnSelected?.Invoke();
+=======
+>>>>>>> Stashed changes
             _objectValue++;
         }
     }
