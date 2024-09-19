@@ -7,39 +7,70 @@ using UnityEngine.InputSystem;
 
 public class LightSwitch : MonoBehaviour
 {
-    GameInputs m_inputActions;
+    private GameInputs _inputActions;
 
+    [SerializeField] private List<GameObject> _lightOn = new List<GameObject>();
+    [SerializeField] private List<GameObject> _lightOff = new List<GameObject>();
+
+    private bool _switch;
 
     private void Awake()
     {
-        m_inputActions = new GameInputs();
+        _inputActions = new GameInputs();
+
+    }
+
+    private void Start()
+    {
+        SwitchLightOff();
     }
 
     private void OnEnable()
     {
-        m_inputActions.InGame.SwitchLight.Enable();
-        m_inputActions.InGame.SwitchLight.performed += SwitchLight_performed;
+        _inputActions.InGame.SwitchLight.Enable();
+        _inputActions.InGame.SwitchLight.performed += SwitchLight_performed;
     }
 
     private void SwitchLight_performed(InputAction.CallbackContext context)
     {
-        
+        if (_switch) SwitchLightOn();
+        else SwitchLightOff();
+
+
     }
 
     private void OnDisable()
     {
-        m_inputActions.InGame.SwitchLight.Disable();
-        m_inputActions.InGame.SwitchLight.performed -= SwitchLight_performed;
+        _inputActions.InGame.SwitchLight.Disable();
+        _inputActions.InGame.SwitchLight.performed -= SwitchLight_performed;
     }
 
-    void Start()
+    private void SwitchLightOn()
     {
-        
+        _switch = false;
+        foreach (GameObject go in _lightOn)
+        {
+            go.SetActive(true);
+        }
+
+        foreach (GameObject go in _lightOff)
+        {
+            go.SetActive(false);
+        }
     }
 
-    
-    void Update()
+    private void SwitchLightOff()
     {
-        
+        _switch = true;
+        foreach (GameObject go in _lightOn)
+        {
+            go.SetActive(false);
+        }
+
+        foreach (GameObject go in _lightOff)
+        {
+            go.SetActive(true);
+        }
     }
+
 }

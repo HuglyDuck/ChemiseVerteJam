@@ -18,11 +18,6 @@ public class InputsManager : MonoBehaviour
         _inputActions = new GameInputs();
     }
 
-    private void Start()
-    {
-        OnActive();
-    }
-
     private void OnEnable()
     {
         _inputActions.InGame.Enable();
