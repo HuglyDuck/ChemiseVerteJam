@@ -340,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &343591004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acf75b80a2855547be2af89dfd8d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
   _splines:
   - {fileID: 988850831}
 --- !u!135 &343591005
@@ -732,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &891809891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,7 +974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &988850831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,9 +995,8 @@ MonoBehaviour:
   - {fileID: 1143007967}
   - {fileID: 2132353342}
   - {fileID: 541309471}
+  _constantSpeed: 1
   _splineSpeed: 2
-  _splineProgress: 0
-  _splineResolution: 30
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -1032,6 +1030,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _splineProgress: 0
+  _splineResolution: 30
 --- !u!4 &988850832
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,7 +1409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1306763786
 Light:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1464,7 +1464,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 5.35
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1652,35 +1652,34 @@ MonoBehaviour:
   - {fileID: 1037796203}
   - {fileID: 694655180}
   - {fileID: 23496227}
-  _splineSpeed: 2
-  _splineProgress: 0
-  _splineResolution: 30
+  _constantSpeed: 0
+  _splineSpeed: 10
   _curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: 0.05752424
-      outSlope: 0.05752424
+      value: 2
+      inSlope: -2.6404405
+      outSlope: -2.6404405
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5125
-      value: 1.0294812
-      inSlope: -0.0014749784
-      outSlope: -0.0014749784
+      time: 0.4922376
+      value: 0.70027584
+      inSlope: 2.9137719
+      outSlope: 2.9137719
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: -0.0604742
-      outSlope: -0.0604742
+      value: 5
+      inSlope: 8.467984
+      outSlope: 8.467984
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1688,6 +1687,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _splineProgress: 0
+  _splineResolution: 30
 --- !u!4 &1536432875
 Transform:
   m_ObjectHideFlags: 0
@@ -1775,33 +1776,34 @@ MonoBehaviour:
   - {fileID: 585184959}
   - {fileID: 983562393}
   - {fileID: 1557213700}
-  _splineSpeed: 5
-  _splineProgress: 0
-  _splineResolution: 30
+  _constantSpeed: 0
+  _splineSpeed: 10
   _curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.012500763
-      value: 0.45046997
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      time: 0
+      value: 1
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      value: 5
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _splineProgress: 0
+  _splineResolution: 30
 --- !u!4 &1589215192
 Transform:
   m_ObjectHideFlags: 0
@@ -1845,12 +1847,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665986724}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6acf75b80a2855547be2af89dfd8d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _splines:
   - {fileID: 1536432874}
   - {fileID: 1589215191}
@@ -2274,10 +2275,40 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1016735671163440543, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: _speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016735671163440543, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016735671163440543, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: _leftLimit
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016735671163440543, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: _rightLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016735671163440543, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: _spawnPoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5190390561759120676, guid: f1cfff1ca308fbf4f9b21b02a14af831,
         type: 3}
       propertyPath: m_Name
       value: Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190390561759120676, guid: f1cfff1ca308fbf4f9b21b02a14af831,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8853463593947523968, guid: f1cfff1ca308fbf4f9b21b02a14af831,
         type: 3}
@@ -2292,7 +2323,7 @@ PrefabInstance:
     - target: {fileID: 8853463593947523968, guid: f1cfff1ca308fbf4f9b21b02a14af831,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.755
+      value: 4.23
       objectReference: {fileID: 0}
     - target: {fileID: 8853463593947523968, guid: f1cfff1ca308fbf4f9b21b02a14af831,
         type: 3}

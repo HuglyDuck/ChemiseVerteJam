@@ -6,16 +6,22 @@ public class ProceduralBezierCurve : MonoBehaviour
     #region VARIABLES
     [Header("Spline Params")]
     [SerializeField] private List<Transform> _controlPoints;
+
+    [Header("Settings")]
+    [SerializeField] private bool _constantSpeed = true;
     [SerializeField] private float _splineSpeed;
+    [SerializeField] private AnimationCurve _curve = AnimationCurve.Linear(0, 1, 1, 1);
 
     [Header("Debug")]
-    [Range(0, 1)] public float _splineProgress = 0f; 
+    [SerializeField][Range(0, 1)] private float _splineProgress = 0f;
     [SerializeField][Range(1, 100)] private int _splineResolution = 20;
-    public AnimationCurve _curve;
     #endregion
 
     public List<Transform> ControlPoints => _controlPoints;
     public float SplineSpeed => _splineSpeed;
+    public bool ConstantSpeed => _constantSpeed;
+    public AnimationCurve Curve => _curve;
+    public float SplineProgress => _splineProgress;
 
     #region SPLINE_UTILITIES
     public static Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
@@ -38,7 +44,7 @@ public class ProceduralBezierCurve : MonoBehaviour
     {
         if (controlPoints.Count < 4)
         {
-            Debug.Log("not enough control points");
+            Debug.Log("need more control points");
             return Vector3.zero;
         }
 
@@ -53,7 +59,7 @@ public class ProceduralBezierCurve : MonoBehaviour
         Vector3 p3 = controlPoints[currentSegment * 3 + 3].position;
 
         return CalculateBezierPoint(segmentLocalT, p0, p1, p2, p3);
-    } 
+    }
     #endregion
 
     #region GIZMOS
@@ -72,11 +78,9 @@ public class ProceduralBezierCurve : MonoBehaviour
             previousPoint = currentPoint;
         }
 
-
-
         Gizmos.color = Color.green;
         Vector3 tPoint = GetPositionOnSpline(_splineProgress, _controlPoints);
         Gizmos.DrawSphere(tPoint, 0.3f);
-    } 
+    }
     #endregion
 }
