@@ -18,6 +18,11 @@ public class InputsManager : MonoBehaviour
         _inputActions = new GameInputs();
     }
 
+    private void Start()
+    {
+        OnActive();
+    }
+
     private void OnEnable()
     {
         _inputActions.InGame.Enable();
@@ -41,30 +46,25 @@ public class InputsManager : MonoBehaviour
 
     private void SelectObjectAdd()
     {
+        OnDesactive();
         if (_objectValue >= _interactObjectList.Count - 1)
         {
             _objectValue = 0;
         }
-        else
-        {
-            OnDesactive();
-            _objectValue++;
-            OnActive();
-        }
+        else _objectValue++;
+        OnActive();
     }
 
     private void SelectObjectSub()
     {
+        OnDesactive();
         if (_objectValue <= 0)
         {
             _objectValue = _interactObjectList.Count - 1;
         }
-        else
-        {
-            OnDesactive();
-            _objectValue--;
-            OnActive();
-        }
+        else _objectValue--;
+        OnActive();
+        
     }
 
     private void OnActive()
