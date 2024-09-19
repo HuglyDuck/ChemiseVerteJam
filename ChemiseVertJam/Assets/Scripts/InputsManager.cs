@@ -46,7 +46,7 @@ public class InputsManager : MonoBehaviour
         }
         else
         {
-            OnSelected?.Invoke();
+            //OnSelected?.Invoke();
             _objectValue++;
         }
     }

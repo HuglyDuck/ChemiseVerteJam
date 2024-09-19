@@ -9,7 +9,7 @@ public class LightSwitch : MonoBehaviour
 {
     GameInputs m_inputActions;
 
-    [SerializeField] List<GameObject> m_
+    //[SerializeField] List<GameObject> m_
 
     private void Awake()
     {

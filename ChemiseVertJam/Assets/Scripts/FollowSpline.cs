@@ -94,6 +94,7 @@ public class FollowSpline : MonoBehaviour
             _previousPosition = ProceduralBezierCurve.GetPositionOnSpline(_splineProgress, _splines[_currentSplineIndex].ControlPoints);
             transform.position = _previousPosition;
         }
+        
     }
     private void StopMovement(InputAction.CallbackContext ctx)
     {
