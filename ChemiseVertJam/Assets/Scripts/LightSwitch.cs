@@ -9,10 +9,6 @@ public class LightSwitch : MonoBehaviour
 {
     GameInputs m_inputActions;
 
-<<<<<<< Updated upstream
-    //[SerializeField] List<GameObject> m_
-=======
->>>>>>> Stashed changes
 
     private void Awake()
     {
