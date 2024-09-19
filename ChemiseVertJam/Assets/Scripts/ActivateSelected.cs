@@ -25,7 +25,10 @@ public class ActivateSelected : MonoBehaviour
 
                 break;
             case ETypeScript.DownLight:
-
+                if (TryGetComponent(out LightDown _scriptLightDown))
+                {
+                    _scriptLightDown.enabled = true;
+                }
                 break;
         }
     }
@@ -49,7 +52,10 @@ public class ActivateSelected : MonoBehaviour
 
                 break;
             case ETypeScript.DownLight:
-
+                if (TryGetComponent(out LightDown _scriptLightDown))
+                {
+                    _scriptLightDown.enabled = false;
+                }
                 break;
         }
     }

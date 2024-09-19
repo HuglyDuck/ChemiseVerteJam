@@ -12,7 +12,7 @@ public class LightSwitch : MonoBehaviour
     [SerializeField] private List<GameObject> _lightOn = new List<GameObject>();
     [SerializeField] private List<GameObject> _lightOff = new List<GameObject>();
 
-    private bool _switch;
+    public bool _switch;
 
     private void Awake()
     {
