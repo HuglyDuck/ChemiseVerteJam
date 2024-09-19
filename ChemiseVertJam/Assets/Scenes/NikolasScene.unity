@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3561342ffb7ee1144acc790d94ea9425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 8
   _leftLimit: -5
   _rightLimit: 5
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
