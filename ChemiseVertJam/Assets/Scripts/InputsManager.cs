@@ -39,7 +39,6 @@ public class InputsManager : MonoBehaviour
 
         _inputActions.InGame.SelectObject.performed += SelectObject_performed;
     }
-
     private void SelectObject_performed(InputAction.CallbackContext context)
     {
         _selectValue = _inputActions.InGame.SelectObject.ReadValue<float>();
@@ -82,7 +81,7 @@ public class InputsManager : MonoBehaviour
         if (_interactObject.TryGetComponent(out ActivateSelected _scriptActivateSelected))
         {
             _scriptActivateSelected.Activate();
-            ChangeCurrentObjectColor();
+            
         }
 
 
@@ -98,8 +97,7 @@ public class InputsManager : MonoBehaviour
         _nextMaterial = GetObjectMaterial(_interactObjectList[nextIndex]);
         _nextChildMaterial = GetChildObjectMaterial(_interactObjectList[nextIndex]);
 
-        ChangePreviousObjectColor();
-        ChangeNextObjectColor();
+        
     }
 
     private void OnDesactive(GameObject _interactObject)
@@ -151,6 +149,26 @@ public class InputsManager : MonoBehaviour
             _currentChildMaterial.SetFloat("_RightValue", 0);
             _currentChildMaterial.SetFloat("_MiddleValue", 1);
         }
+    }
+    public GameObject GetCurrentObject()
+    {
+        if (_objectValue >= 0 && _objectValue < _interactObjectList.Count)
+        {
+            return _interactObjectList[_objectValue];
+        }
+        return null;
+    }
+
+    public GameObject GetPreviousObject()
+    {
+        int previousIndex = (_objectValue - 1 + _interactObjectList.Count) % _interactObjectList.Count;
+        return _interactObjectList[previousIndex];
+    }
+
+    public GameObject GetNextObject()
+    {
+        int nextIndex = (_objectValue + 1) % _interactObjectList.Count;
+        return _interactObjectList[nextIndex];
     }
 
 
@@ -204,5 +222,8 @@ public class InputsManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(_objectValue);
+        ChangeCurrentObjectColor();
+        ChangePreviousObjectColor();
+        ChangeNextObjectColor();
     }
 }

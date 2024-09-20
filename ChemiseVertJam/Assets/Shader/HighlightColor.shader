@@ -11,7 +11,7 @@ Shader "HighlightColor"
 		_Middle("Middle", Color) = (1,0.7263291,0,0)
 		_LeftValue("LeftValue", Float) = 0
 		_RightValue("RightValue", Float) = 0
-		_MiddleValue("MiddleValue", Float) = 0
+		_MiddleValue("MiddleValue", Float) = 0.92
 
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
@@ -1664,8 +1664,8 @@ Node;AmplifyShaderEditor.ColorNode;24;-1016.715,-936.8474;Inherit;False;Constant
 Node;AmplifyShaderEditor.WorldNormalVector;21;-1467.844,-175.3936;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.ViewDirInputsCoordNode;22;-1623.843,93.40594;Inherit;False;World;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.FresnelNode;20;-1105.165,37.37794;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;10;False;3;FLOAT;3;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;18;-611.2363,-34.93835;Inherit;False;Property;_MiddleValue;MiddleValue;5;0;Create;True;0;0;0;False;0;False;0;-0.63;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode;25;276.0444,168.2946;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;18;-613.3038,-34.93835;Inherit;False;Property;_MiddleValue;MiddleValue;5;0;Create;False;0;0;0;False;0;False;0.92;-0.63;0;0;0;1;FLOAT;0
 WireConnection;16;0;13;0
 WireConnection;16;1;15;0
 WireConnection;16;2;14;0
@@ -1683,4 +1683,4 @@ WireConnection;20;0;21;0
 WireConnection;20;4;22;0
 WireConnection;25;0;16;0
 ASEEND*/
-//CHKSM=63F01340068A4B3405497B455E14E568D9E9C051
+//CHKSM=A3ECB7E1F82F1B648AF986DD74A696E2F8F5CF17

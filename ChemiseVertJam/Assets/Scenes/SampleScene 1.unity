@@ -1268,6 +1268,113 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a80577337ffc84b43bde29b51ed0d67e, type: 3}
+--- !u!1 &632016100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632016104}
+  - component: {fileID: 632016103}
+  - component: {fileID: 632016102}
+  - component: {fileID: 632016101}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!136 &632016101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632016100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &632016102
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632016100}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &632016103
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632016100}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &632016104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632016100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.000000055931658, y: 0.00000005949137, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &646068155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1442,6 +1549,7 @@ GameObject:
   - component: {fileID: 697062853}
   - component: {fileID: 697062852}
   - component: {fileID: 697062854}
+  - component: {fileID: 697062855}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1497,6 +1605,23 @@ MonoBehaviour:
   - {fileID: 957639982}
   - {fileID: 947560004}
   - {fileID: 469431259}
+--- !u!114 &697062855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697062851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ae3fe04b8f4614cac8060c10092551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputsManager: {fileID: 697062852}
+  _arrowPrefab: {fileID: 919132149155446097, guid: 88d67534c055e8f42b26c20c1305134f,
+    type: 3}
+  _arrowDistanceFromCenter: 9.95
+  _arrowPositionFactor: 0.5
 --- !u!1 &707933396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spline: {fileID: 1166703561}
   speed: 8
+  _runSpeed: 0
+  _speed: 0
 --- !u!1 &1325474601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,7 +3499,7 @@ PrefabInstance:
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.47
+      value: 11.22
       objectReference: {fileID: 0}
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
@@ -3382,7 +3509,7 @@ PrefabInstance:
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.51
+      value: 15.92
       objectReference: {fileID: 0}
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
@@ -3441,7 +3568,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2668362363451963563, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668362363451963563, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3abd85cd0c48cdf479009a194758b38f, type: 2}
+    - target: {fileID: 2668362363451963563, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 3abd85cd0c48cdf479009a194758b38f, type: 2}
     - target: {fileID: 6885113091294425579, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
@@ -3652,3 +3789,4 @@ SceneRoots:
   - {fileID: 448837457}
   - {fileID: 894575023}
   - {fileID: 1166703562}
+  - {fileID: 632016104}
