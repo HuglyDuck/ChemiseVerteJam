@@ -1264,7 +1264,7 @@ PrefabInstance:
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.93
       objectReference: {fileID: 0}
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
@@ -1274,7 +1274,7 @@ PrefabInstance:
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 2302420869905211999, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
         type: 3}
@@ -1315,6 +1315,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SliderObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477499352895595840, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477499352895595840, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477499352895595840, guid: 3ac9aebeed980fa46bd4d23ab5895d2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1471,11 +1486,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294235500672194719, guid: 0190e297c8fe8d445a3c49e78176dc30,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6388347937453432275, guid: 0190e297c8fe8d445a3c49e78176dc30,
         type: 3}
