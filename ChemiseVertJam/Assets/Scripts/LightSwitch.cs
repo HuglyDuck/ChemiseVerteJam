@@ -17,11 +17,6 @@ public class LightSwitch : MonoBehaviour
     private void Awake()
     {
         _inputActions = new GameInputs();
-
-    }
-
-    private void Start()
-    {
         SwitchLightOff();
     }
 

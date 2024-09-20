@@ -20,7 +20,12 @@ public class InputsManager : MonoBehaviour
 
     private void Start()
     {
-        OnActive();
+        foreach (GameObject obj in _interactObjectList)
+        {
+            OnDesactive(obj);
+        }
+
+        OnActive(_interactObjectList[_objectValue]);
     }
 
     private void OnEnable()
@@ -46,38 +51,38 @@ public class InputsManager : MonoBehaviour
 
     private void SelectObjectAdd()
     {
-        OnDesactive();
+        OnDesactive(_interactObjectList[_objectValue]);
         if (_objectValue >= _interactObjectList.Count - 1)
         {
             _objectValue = 0;
         }
         else _objectValue++;
-        OnActive();
+        OnActive(_interactObjectList[_objectValue]);
     }
 
     private void SelectObjectSub()
     {
-        OnDesactive();
+        OnDesactive(_interactObjectList[_objectValue]);
         if (_objectValue <= 0)
         {
             _objectValue = _interactObjectList.Count - 1;
         }
         else _objectValue--;
-        OnActive();
+        OnActive(_interactObjectList[_objectValue]);
         
     }
 
-    private void OnActive()
+    private void OnActive(GameObject _interactObject)
     {
-       if( _interactObjectList[_objectValue].TryGetComponent(out ActivateSelected _scriptActivateSelected))
+       if( _interactObject.TryGetComponent(out ActivateSelected _scriptActivateSelected))
         {
             _scriptActivateSelected.Activate();
         }
     }
 
-    private void OnDesactive()
+    private void OnDesactive(GameObject _interactObject)
     {
-        if (_interactObjectList[_objectValue].TryGetComponent(out ActivateSelected _scriptActivateSelected))
+        if (_interactObject.TryGetComponent(out ActivateSelected _scriptActivateSelected))
         {
             _scriptActivateSelected.Desactivate();
         }
@@ -91,5 +96,10 @@ public class InputsManager : MonoBehaviour
     {
         _inputActions.InGame.Disable();
         _inputActions.InGame.SelectObject.performed -= SelectObject_performed;
+    }
+
+    private void Update()
+    {
+        Debug.Log(_objectValue); 
     }
 }
