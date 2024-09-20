@@ -7,14 +7,13 @@ using UnityEngine.InputSystem;
 public class SplineMovement : MonoBehaviour
 {
     [SerializeField] private SplineContainer spline;
+    [SerializeField] private float speed = 1f;
     float distancePercentage = 0f;
 
-    [SerializeField] private float _runSpeed = 4f;
-    [SerializeField] private float _speed = 2f;
-    [SerializeField] private float _moveTowardSpeed = 1f;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _speed;
     private float _targetSpeed;
     private float _currentSpeed;
-    private int _speedIndex = 0;
     private GameInputs _inputActions;
 
     float splineLength;
@@ -34,30 +33,15 @@ public class SplineMovement : MonoBehaviour
 
     private void RunPlayer_performed(InputAction.CallbackContext context)
     {
-        if(_speedIndex == 2)
+        if(_currentSpeed >= _runSpeed)
         {
-            _speedIndex = 1;
-            _targetSpeed = _speed;
-        }
-        else
-        {
-            _speedIndex = 2;
-            _targetSpeed = _runSpeed;
+
         }
     }
 
     private void StopPlayer_performed(InputAction.CallbackContext context)
     {
-        if (_speedIndex == 0)
-        {
-            _speedIndex = 1;
-            _targetSpeed = _speed;
-        }
-        else
-        {
-            _speedIndex = 0;
-            _targetSpeed = 0;
-        }
+
     }
 
     private void Start()
@@ -68,9 +52,7 @@ public class SplineMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
-
-        distancePercentage += _currentSpeed * Time.deltaTime / splineLength;
+        distancePercentage += speed * Time.deltaTime / splineLength;
 
         Vector3 currentPosition = spline.EvaluatePosition(distancePercentage);
         transform.position = currentPosition;
