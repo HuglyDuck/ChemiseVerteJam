@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 public class DetectPlayer : MonoBehaviour
 {
     #region VARIABLES
@@ -14,6 +15,9 @@ public class DetectPlayer : MonoBehaviour
     private float _timer = 0f;
     private bool _inLight;
     private bool _inCircle;
+
+    [SerializeField] private GameObject _targetObject;
+
     #endregion
 
     #region SPOT_ZONE
@@ -22,9 +26,6 @@ public class DetectPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _inCircle = true;
-            Debug.Log("In spot");
-
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -36,10 +37,21 @@ public class DetectPlayer : MonoBehaviour
             _spotLight.color = _originalColor;
         }
     }
+
+
     #endregion
 
     private void Update()
     {
+        //if (IsInSpotlight(_targetObject))
+        //{
+        //    _inCircle = true;
+        //}
+        //else
+        //{
+        //    _inCircle = false;
+        //    _spotLight.color = _originalColor;
+        //}
         CheckVisibility();
     }
 
@@ -58,7 +70,6 @@ public class DetectPlayer : MonoBehaviour
                 if (hit.collider.transform.CompareTag("Player"))
                 {
                     _inLight = true;
-                    Debug.Log("In ray");
                 }
                 else
                 {
@@ -86,4 +97,38 @@ public class DetectPlayer : MonoBehaviour
     }
     #endregion
 
+
+    //bool IsInSpotlight(GameObject obj)
+    //{
+    //    if (obj == null) return false;
+
+
+    //    Vector3 directionToTarget = obj.transform.position - transform.position;
+
+
+    //    if (directionToTarget.magnitude > _spotLight.range)
+    //    {
+    //        return false;
+    //    }
+
+
+    //    float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
+    //    if (angleToTarget > _spotLight.spotAngle / 2)
+    //    {
+    //        return false;
+    //    }
+
+
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(transform.position, directionToTarget, out hit, _spotLight.range))
+    //    {
+
+    //        if (hit.collider.gameObject == obj)
+    //        {
+    //            return true;
+    //        }
+    //    }
+
+    //    return false;
+    //}
 }
