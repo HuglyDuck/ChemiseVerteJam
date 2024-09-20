@@ -6,11 +6,10 @@ public class DetectPlayer : MonoBehaviour
 {
     #region VARIABLES
     [Header("Detection Params")]
-    [SerializeField] private LayerMask _layer;
     [SerializeField] private Color _color;
     [SerializeField] private Color _originalColor;
     [SerializeField] private Light _spotLight;
-    [SerializeField] private Transform[] _targets;
+    [SerializeField] private LayerMask _layerToIgnore;
     private float _timer = 0f;
     private bool _inLight;
     private bool _inCircle;
@@ -23,6 +22,7 @@ public class DetectPlayer : MonoBehaviour
         {
             _timer += Time.deltaTime;
             _inCircle = true;
+            Debug.Log("In spot");
 
 
         }
@@ -48,16 +48,17 @@ public class DetectPlayer : MonoBehaviour
 
     private void CheckVisibility()
     {
-        foreach (var target in _targets)
+        foreach (var target in PlayerTargets.Instance.Targets)
         {
             Vector3 directionToTarget = (target.position - transform.position).normalized;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, directionToTarget, out hit, _spotLight.range))
+            if (Physics.Raycast(transform.position, directionToTarget, out hit, _spotLight.range, ~_layerToIgnore))
             {
                 Debug.DrawLine(transform.position, hit.point, new Color(1, 0, 0));
                 if (hit.collider.transform.CompareTag("Player"))
                 {
                     _inLight = true;
+                    Debug.Log("In ray");
                 }
                 else
                 {
