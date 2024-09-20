@@ -80,6 +80,15 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RunPlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb12f350-cac7-4d8e-a51d-e9cdea3555e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -142,6 +151,39 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""6aba0ee8-9fde-4b3d-b682-c3c9bd76c277"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SideMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""GamepadStick"",
+                    ""id"": ""7d4f3282-5412-4e9a-956f-8982acb0d4f6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SideMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""d651b6de-bc89-42b5-bbd1-45b6bcadf12b"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SideMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f9b27ba9-6898-4a77-82ad-a186e46bec55"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -302,6 +344,28 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""action"": ""SelectObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ce9eba9-df0a-4b26-ae4c-fa34b26a5f43"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RunPlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""444aec76-4372-4a04-aba0-c98d580740a1"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RunPlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -752,6 +816,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         m_InGame_StopPlayer = m_InGame.FindAction("StopPlayer", throwIfNotFound: true);
         m_InGame_PauseGame = m_InGame.FindAction("PauseGame", throwIfNotFound: true);
         m_InGame_SelectObject = m_InGame.FindAction("SelectObject", throwIfNotFound: true);
+        m_InGame_RunPlayer = m_InGame.FindAction("RunPlayer", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -827,6 +892,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_StopPlayer;
     private readonly InputAction m_InGame_PauseGame;
     private readonly InputAction m_InGame_SelectObject;
+    private readonly InputAction m_InGame_RunPlayer;
     public struct InGameActions
     {
         private @GameInputs m_Wrapper;
@@ -837,6 +903,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         public InputAction @StopPlayer => m_Wrapper.m_InGame_StopPlayer;
         public InputAction @PauseGame => m_Wrapper.m_InGame_PauseGame;
         public InputAction @SelectObject => m_Wrapper.m_InGame_SelectObject;
+        public InputAction @RunPlayer => m_Wrapper.m_InGame_RunPlayer;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -864,6 +931,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @SelectObject.started += instance.OnSelectObject;
             @SelectObject.performed += instance.OnSelectObject;
             @SelectObject.canceled += instance.OnSelectObject;
+            @RunPlayer.started += instance.OnRunPlayer;
+            @RunPlayer.performed += instance.OnRunPlayer;
+            @RunPlayer.canceled += instance.OnRunPlayer;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -886,6 +956,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @SelectObject.started -= instance.OnSelectObject;
             @SelectObject.performed -= instance.OnSelectObject;
             @SelectObject.canceled -= instance.OnSelectObject;
+            @RunPlayer.started -= instance.OnRunPlayer;
+            @RunPlayer.performed -= instance.OnRunPlayer;
+            @RunPlayer.canceled -= instance.OnRunPlayer;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -997,6 +1070,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         void OnStopPlayer(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnSelectObject(InputAction.CallbackContext context);
+        void OnRunPlayer(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
