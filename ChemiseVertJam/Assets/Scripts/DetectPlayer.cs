@@ -10,6 +10,7 @@ public class DetectPlayer : MonoBehaviour
     [SerializeField] private Color _originalColor;
     [SerializeField] private Light _spotLight;
     [SerializeField] private LayerMask _layerToIgnore;
+    [SerializeField] private float _timerDeath;
     private float _timer = 0f;
     private bool _inLight;
     private bool _inCircle;
@@ -20,7 +21,6 @@ public class DetectPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _timer += Time.deltaTime;
             _inCircle = true;
             Debug.Log("In spot");
 
@@ -72,6 +72,15 @@ public class DetectPlayer : MonoBehaviour
         {
             Debug.Log("Detected");
             _spotLight.color = _color;
+            _timer += Time.deltaTime;
+            if(_timer >= _timerDeath)
+            {
+                Debug.Log("Player Died");
+            }
+        }
+        else
+        {
+            _timer = 0;
         }
         
     }

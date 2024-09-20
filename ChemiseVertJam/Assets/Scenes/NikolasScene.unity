@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _splines:
   - {fileID: 988850831}
+  _isPlayer: 0
 --- !u!135 &343591005
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -919,6 +920,7 @@ MonoBehaviour:
   _layerToIgnore:
     serializedVersion: 2
     m_Bits: 128
+  _timerDeath: 3
 --- !u!54 &891809896
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1897,7 +1899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665986724}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6acf75b80a2855547be2af89dfd8d37b, type: 3}
   m_Name: 
@@ -1905,6 +1907,7 @@ MonoBehaviour:
   _splines:
   - {fileID: 1536432874}
   - {fileID: 1589215191}
+  _isPlayer: 1
 --- !u!4 &1665986726
 Transform:
   m_ObjectHideFlags: 0
@@ -2333,12 +2336,12 @@ PrefabInstance:
     - target: {fileID: 2097286471587743233, guid: 7f45d7ad3f8a6274cb1b4dc3dc8fe1a1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.11
       objectReference: {fileID: 0}
     - target: {fileID: 2097286471587743233, guid: 7f45d7ad3f8a6274cb1b4dc3dc8fe1a1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.42
       objectReference: {fileID: 0}
     - target: {fileID: 2097286471587743233, guid: 7f45d7ad3f8a6274cb1b4dc3dc8fe1a1,
         type: 3}
@@ -2379,11 +2382,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FixedLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 2435757319819010471, guid: 7f45d7ad3f8a6274cb1b4dc3dc8fe1a1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
