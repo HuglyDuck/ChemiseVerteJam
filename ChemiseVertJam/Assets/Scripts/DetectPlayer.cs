@@ -46,6 +46,7 @@ public class DetectPlayer : MonoBehaviour
         CheckVisibility();
         if (IsInSpotlight(_targetObject))
         {
+            Debug.Log(_targetObject.name + " In");
             Debug.Log("In Circle");
             _inCircle = true;
         }
@@ -71,10 +72,12 @@ public class DetectPlayer : MonoBehaviour
                 if (hit.collider.transform.CompareTag("Player"))
                 {
                     _inLight = true;
+                    print("true");
                 }
                 else
                 {
                     _inLight = false;
+                    print("false");
                 }
 
             }

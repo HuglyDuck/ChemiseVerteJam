@@ -9,8 +9,7 @@ public class ProceduralBezierCurve : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private bool _constantSpeed = true;
-    [SerializeField] private float _splineSpeed;
-    [SerializeField] private AnimationCurve _curve = AnimationCurve.Linear(0, 1, 1, 1);
+    [SerializeField] private float _splineSpeed = 1f;
 
     [Header("Debug")]
     [SerializeField][Range(0, 1)] private float _splineProgress = 0f;
@@ -19,11 +18,7 @@ public class ProceduralBezierCurve : MonoBehaviour
 
     public List<Transform> ControlPoints => _controlPoints;
     public float SplineSpeed => _splineSpeed;
-    public bool ConstantSpeed => _constantSpeed;
-    public AnimationCurve Curve => _curve;
-    public float SplineProgress => _splineProgress;
 
-    #region SPLINE_UTILITIES
     public static Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
     {
         float u = 1 - t;
@@ -44,7 +39,7 @@ public class ProceduralBezierCurve : MonoBehaviour
     {
         if (controlPoints.Count < 4)
         {
-            Debug.Log("need more control points");
+            Debug.LogError("Need at least 4 control points for a Bézier curve.");
             return Vector3.zero;
         }
 
@@ -60,27 +55,78 @@ public class ProceduralBezierCurve : MonoBehaviour
 
         return CalculateBezierPoint(segmentLocalT, p0, p1, p2, p3);
     }
-    #endregion
 
-    #region GIZMOS
-    private void OnDrawGizmos()
+    public float TangentMagnitude(float t)
     {
-        if (_controlPoints == null || _controlPoints.Count < 4)
-            return;
+        Vector3 tangent = Vector3.zero;
+        int numSegments = (_controlPoints.Count - 1) / 3;
+        float segmentT = t * numSegments;
+        int currentSegment = Mathf.Min(Mathf.FloorToInt(segmentT), numSegments - 1);
+        float segmentLocalT = segmentT - currentSegment;
 
-        Gizmos.color = Color.blue;
+        Vector3 p0 = _controlPoints[currentSegment * 3].position;
+        Vector3 p1 = _controlPoints[currentSegment * 3 + 1].position;
+        Vector3 p2 = _controlPoints[currentSegment * 3 + 2].position;
+        Vector3 p3 = _controlPoints[currentSegment * 3 + 3].position;
 
-        Vector3 previousPoint = _controlPoints[0].position;
-        for (float i = 0; i <= 1; i += 1f / _splineResolution)
+        tangent += -3 * Mathf.Pow(1 - segmentLocalT, 2) * p0;
+        tangent += 3 * Mathf.Pow(1 - segmentLocalT, 2) * p1;
+        tangent += -6 * (1 - segmentLocalT) * segmentLocalT * p1;
+        tangent += 6 * (1 - segmentLocalT) * segmentLocalT * p2;
+        tangent += -3 * Mathf.Pow(segmentLocalT, 2) * p2;
+        tangent += 3 * Mathf.Pow(segmentLocalT, 2) * p3;
+
+        return tangent.magnitude;
+    }
+
+    // Calcul de la longueur d'arc
+    public float ArcLength(float t)
+    {
+        return Integrate(x => TangentMagnitude(x), 0, t);
+    }
+
+    public float Parameter(float length)
+    {
+        float t = length / ArcLength(1);
+        float lowerBound = 0f;
+        float upperBound = 1f;
+
+        for (int i = 0; i < 100; ++i)
         {
-            Vector3 currentPoint = GetPositionOnSpline(i, _controlPoints);
-            Gizmos.DrawLine(previousPoint, currentPoint);
-            previousPoint = currentPoint;
+            float f = ArcLength(t) - length;
+
+            if (Mathf.Abs(f) < 0.01f)
+                break;
+
+            float derivative = TangentMagnitude(t);
+            float candidateT = t - f / derivative;
+
+            if (f > 0)
+            {
+                upperBound = t;
+                t = candidateT <= 0 ? (upperBound + lowerBound) / 2 : candidateT;
+            }
+            else
+            {
+                lowerBound = t;
+                t = candidateT >= 1 ? (upperBound + lowerBound) / 2 : candidateT;
+            }
         }
 
-        Gizmos.color = Color.green;
-        Vector3 tPoint = GetPositionOnSpline(_splineProgress, _controlPoints);
-        Gizmos.DrawSphere(tPoint, 0.3f);
+        return t;
     }
-    #endregion
+
+    public float Integrate(System.Func<float, float> func, float a, float b, int steps = 100)
+    {
+        float step = (b - a) / steps;
+        float integral = 0f;
+
+        for (int i = 0; i <= steps; i++)
+        {
+            float t = a + i * step;
+            integral += func(t) * step;
+        }
+
+        return integral;
+    }
 }

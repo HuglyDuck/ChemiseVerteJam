@@ -20,21 +20,24 @@ public class FollowSpline : MonoBehaviour
     {
         _gameInputs = new GameInputs();
     }
+
     private void OnEnable()
     {
         _gameInputs.InGame.StopPlayer.Enable();
         _gameInputs.InGame.StopPlayer.performed += StopMovement;
     }
+
     private void OnDisable()
     {
         _gameInputs.InGame.StopPlayer.Disable();
         _gameInputs.InGame.StopPlayer.performed -= StopMovement;
     }
+
     void Start()
     {
         if (_splines == null || _splines.Count == 0)
         {
-            Debug.LogError("forgot to reference spline");
+            Debug.LogError("No spline referenced");
             return;
         }
 
@@ -45,36 +48,29 @@ public class FollowSpline : MonoBehaviour
     {
         if (_canMove)
         {
-            MoveAlongSpline(); 
+            MoveAlongSpline();
         }
     }
 
-    #region MOVEMENT_LOGIC
     private void MoveAlongSpline()
     {
         if (_splines == null || _splines.Count == 0)
             return;
 
         var currentSpline = _splines[_currentSplineIndex];
-        float distanceToMove;
 
-        if (currentSpline.ConstantSpeed)
-        {
-            distanceToMove = currentSpline.SplineSpeed * Time.deltaTime;
-        }
-        else
-        {
-            distanceToMove = currentSpline.Curve.Evaluate(_splineProgress) * Time.deltaTime;
-        }
+        float distanceToMove = currentSpline.SplineSpeed * Time.deltaTime;
 
-        _splineProgress += distanceToMove / currentSpline.ControlPoints.Count;
+        float arcLengthAtCurrentT = currentSpline.ArcLength(_splineProgress);
+        float newArcLength = arcLengthAtCurrentT + distanceToMove;
+        _splineProgress = currentSpline.Parameter(newArcLength);
+
         _splineProgress = Mathf.Clamp01(_splineProgress);
 
         Vector3 newPosition = ProceduralBezierCurve.GetPositionOnSpline(_splineProgress, currentSpline.ControlPoints);
-
         transform.position = newPosition;
-        Vector3 moveDirection = (newPosition - _previousPosition).normalized;
 
+        Vector3 moveDirection = (newPosition - _previousPosition).normalized;
         if (moveDirection != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(moveDirection);
@@ -95,7 +91,6 @@ public class FollowSpline : MonoBehaviour
             UpdateSpline();
         }
     }
-    #endregion
 
     private void UpdateSpline()
     {
