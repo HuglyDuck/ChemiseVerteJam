@@ -56,8 +56,7 @@ public class SpotlightChecker : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, directionToTarget, out hit, spotlight.range))
         {
-            
-            if (hit.collider.gameObject == obj)
+            if (hit.transform.CompareTag("Player"))
             {
                 return true;
             }
