@@ -1,18 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class ObjectMovement : MonoBehaviour
 {
     #region VARIABLES
     [Header("Rail Parameters")]
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _leftLimit = -5f;
-    [SerializeField] private float _rightLimit = 5f;
+    [SerializeField] private Transform _leftLimitObject;
+    [SerializeField] private Transform _rightLimitObject;
+    [SerializeField][Range(0, 1)] private float _spawnpoint = 0f;
     [SerializeField] private Color _gizmoColor = Color.red;
 
-
     private float _input;
-    private float _currentXPosition;
     private GameInputs _gameInput;
+    private Vector3 _movementDirection;
+    private float _pathLength;
+    private Vector3 _startPosition;
     #endregion
 
     #region INPUTS
@@ -42,43 +45,87 @@ public class ObjectMovement : MonoBehaviour
         _input = context.ReadValue<float>();
     }
     #endregion
-    void Update()
+
+    private void Start()
     {
+        if (_leftLimitObject && _rightLimitObject)
+        {
+      
+            _leftLimitObject.parent = null;
+            _rightLimitObject.parent = null;
 
+          
+            _movementDirection = (_rightLimitObject.position - _leftLimitObject.position).normalized;
+            _pathLength = Vector3.Distance(_leftLimitObject.position, _rightLimitObject.position);
 
-        UpdateMovement();
+          
+            _startPosition = _leftLimitObject.position + _movementDirection * _spawnpoint * _pathLength;
+            transform.position = _startPosition;
+        }
+    }
 
+    private void Update()
+    {
+        if (_leftLimitObject && _rightLimitObject)
+        {
+            UpdateMovement();
+        }
     }
 
     #region GIZMOS
     private void OnDrawGizmos()
     {
+        if (_leftLimitObject && _rightLimitObject)
+        {
+            Gizmos.color = _gizmoColor;
 
-        Gizmos.color = _gizmoColor;
+            Gizmos.DrawLine(_leftLimitObject.position, _rightLimitObject.position);
 
-        Gizmos.DrawLine(new Vector3(_leftLimit, transform.position.y - 1, transform.position.z),
-                        new Vector3(_leftLimit, transform.position.y + 1, transform.position.z));
 
-        Gizmos.DrawLine(new Vector3(_rightLimit, transform.position.y - 1, transform.position.z),
-                        new Vector3(_rightLimit, transform.position.y + 1, transform.position.z));
+            Gizmos.DrawSphere(_leftLimitObject.position, 0.2f);
+            Gizmos.DrawSphere(_rightLimitObject.position, 0.2f);
 
-        Gizmos.DrawLine(new Vector3(_leftLimit, transform.position.y, transform.position.z),
-                        new Vector3(_rightLimit, transform.position.y, transform.position.z));
+
+            if (Application.isPlaying)
+            {
+                Gizmos.DrawSphere(transform.position, 0.2f);
+            }
+            else
+            {
+                Vector3 spawnPosition = _leftLimitObject.position + (_rightLimitObject.position - _leftLimitObject.position) * _spawnpoint;
+                Gizmos.DrawSphere(spawnPosition, 0.2f);
+            }
+        }
     }
     #endregion
 
     #region MOVEMENT
     private void UpdateMovement()
     {
-        _currentXPosition = transform.position.x;
+
+        Vector3 currentPosition = transform.position;
+        Vector3 projectedPosition = Vector3.Project(currentPosition - _leftLimitObject.position, _movementDirection) + _leftLimitObject.position;
+
 
         float movement = _input * _speed * Time.deltaTime;
 
-        float newPositionX = _currentXPosition + movement;
 
-        newPositionX = Mathf.Clamp(newPositionX, _leftLimit, _rightLimit);
+        projectedPosition += _movementDirection * movement;
 
-        transform.position = new Vector3(newPositionX, transform.position.y, transform.position.z);
+
+        float distanceFromLeft = Vector3.Distance(projectedPosition, _leftLimitObject.position);
+        float distanceFromRight = Vector3.Distance(projectedPosition, _rightLimitObject.position);
+
+        if (distanceFromLeft > _pathLength)
+        {
+            projectedPosition = _rightLimitObject.position;
+        }
+        else if (distanceFromRight > _pathLength)
+        {
+            projectedPosition = _leftLimitObject.position;
+        }
+
+        transform.position = projectedPosition;
     }
+    #endregion
 }
-#endregion
