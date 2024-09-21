@@ -24,15 +24,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 664ca84209b35814bbd921f4a332574f, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2465208435195b4bb88af8a75f673e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: d3a7bc5c50d93f64e877e9e26d910fd0, type: 3}
+        m_Texture: {fileID: 2800000, guid: fd3dfb5aa6fef2d4e85f8a6d923b5f7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OccRouMet:
-        m_Texture: {fileID: 2800000, guid: 98b1cba5b714c524cb51efc6f977cd53, type: 3}
+        m_Texture: {fileID: 2800000, guid: aaf47e903dfb9934cbc0a476f5db4543, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:

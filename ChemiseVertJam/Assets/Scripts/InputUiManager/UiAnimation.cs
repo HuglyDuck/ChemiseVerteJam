@@ -5,6 +5,7 @@ public class JoystickInput : MonoBehaviour
 {
     private GameInputs _gameInput;
     private float _axisValue;
+    public float _rblbValue;
     public float _aPushed;
     public float _bPushed;
     public float _xPushed;
@@ -28,8 +29,8 @@ public class JoystickInput : MonoBehaviour
         _gameInput.InGame.StopPlayer.performed += StopPlayer_performed;
         _gameInput.InGame.SwitchLight.Enable();
         _gameInput.InGame.SwitchLight.performed += SwitchLight_performed;
-
-
+        _gameInput.InGame.SelectObject.Enable();
+        _gameInput.InGame.SelectObject.performed += SelectObject_performed;
     }
 
     private void OnDisable()
@@ -45,7 +46,6 @@ public class JoystickInput : MonoBehaviour
         _gameInput.InGame.SwitchLight.performed -= SwitchLight_performed;
         _gameInput.InGame.SelectObject.Enable();
         _gameInput.InGame.SelectObject.performed -= SelectObject_performed;
-
     }
 
     private void OnAxisMove(InputAction.CallbackContext context)
@@ -72,11 +72,13 @@ public class JoystickInput : MonoBehaviour
     }
     private void SelectObject_performed(InputAction.CallbackContext context)
     {
-        _aPushed = 1f;
+        _rblbValue = context.ReadValue<float>();
     }
     private void Update()
     {
         float moveX = _axisValue;
+        float changeX = _rblbValue;
+
         if (_bPushed > 0f)
         {
             _bPushed -= Time.deltaTime * 5;

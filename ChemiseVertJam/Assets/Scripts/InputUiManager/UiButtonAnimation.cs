@@ -8,9 +8,7 @@ public class UiButtonManager : MonoBehaviour
     [SerializeField] private GameObject buttonB;
     [SerializeField] private GameObject buttonX;
 
-
     [SerializeField] private float moveDistance = 0.1f;
-
 
     private Vector3 originalPositionA;
     private Vector3 originalPositionB;
@@ -18,7 +16,6 @@ public class UiButtonManager : MonoBehaviour
 
     private void Start()
     {
-
         originalPositionA = buttonA.transform.localPosition;
         originalPositionB = buttonB.transform.localPosition;
         originalPositionX = buttonX.transform.localPosition;
@@ -26,7 +23,6 @@ public class UiButtonManager : MonoBehaviour
 
     private void Update()
     {
-
         if (inputManager._aPushed > 0f)
         {
             PressButton(buttonA, originalPositionA);
@@ -61,7 +57,6 @@ public class UiButtonManager : MonoBehaviour
         newPosition.y -= moveDistance;
         button.transform.localPosition = newPosition;
     }
-
     private void ResetButton(GameObject button, Vector3 originalPosition)
     {
         button.transform.localPosition = originalPosition;

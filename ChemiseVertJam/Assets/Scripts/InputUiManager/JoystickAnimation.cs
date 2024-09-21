@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JoystickLocalTiltX : MonoBehaviour
+public class JoystickAnimation : MonoBehaviour
 {
     private GameInputs _gameInput;
     private float _axisValue;
@@ -40,7 +40,6 @@ public class JoystickLocalTiltX : MonoBehaviour
     {
         float targetTiltX = Mathf.Lerp(-tiltRange, tiltRange, (_axisValue + 1) / 2f);
 
-        // Appliquer la rotation sur l'axe X local en utilisant le point de pivot local
         transform.localRotation = Quaternion.Euler(targetTiltX, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
     }
 }
