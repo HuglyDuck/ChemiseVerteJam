@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private float _currentSpeed;
     private int _speedIndex = 0;
     private GameInputs _inputActions;
+
+    public event Action _eventStartMove;
+    private bool _startMove = true;
 
     private void Awake()
     {
@@ -39,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
             _speedIndex = 2;
             _targetSpeed = _runSpeed;
         }
+
+        if (_startMove)
+        {
+            _startMove = false;
+            _eventStartMove?.Invoke();
+        }
     }
 
     private void StopPlayer_performed(InputAction.CallbackContext context)
@@ -52,6 +62,12 @@ public class PlayerMovement : MonoBehaviour
         {
             _speedIndex = 0;
             _targetSpeed = 0;
+        }
+
+        if(_startMove)
+        {
+            _startMove = false;
+            _eventStartMove?.Invoke();
         }
     }
 

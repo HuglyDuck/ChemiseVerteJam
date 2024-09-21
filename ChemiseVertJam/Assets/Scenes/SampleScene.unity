@@ -1151,6 +1151,7 @@ GameObject:
   - component: {fileID: 697062853}
   - component: {fileID: 697062852}
   - component: {fileID: 697062854}
+  - component: {fileID: 697062855}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1204,6 +1205,21 @@ MonoBehaviour:
   - {fileID: 957639982}
   - {fileID: 947560004}
   - {fileID: 469431259}
+--- !u!114 &697062855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697062851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17514373e316f904da4c0840fbcd2d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerFocusLight: 15
+  _scriptPlayerMovement: {fileID: 1275044186}
+  _focusDuration: 3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,6 +1486,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5843196926508109313, guid: 73b96ae9b2940f84caa02b1eb6ccf23a,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1275044190}
+    - target: {fileID: 5843196926508109313, guid: 73b96ae9b2940f84caa02b1eb6ccf23a,
+        type: 3}
+      propertyPath: _scriptFocusLight
+      value: 
+      objectReference: {fileID: 697062855}
     - target: {fileID: 5878221696285028977, guid: 73b96ae9b2940f84caa02b1eb6ccf23a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2054,6 +2080,12 @@ MonoBehaviour:
   spline: {fileID: 1007784074}
   _pingPong: 0
   _currentSpeed: 2
+--- !u!4 &1275044190 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3329162777894634899, guid: 0190e297c8fe8d445a3c49e78176dc30,
+    type: 3}
+  m_PrefabInstance: {fileID: 113259363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1325474601
 GameObject:
   m_ObjectHideFlags: 0

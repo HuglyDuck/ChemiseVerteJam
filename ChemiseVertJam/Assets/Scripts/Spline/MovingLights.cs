@@ -7,13 +7,30 @@ public class MovingLights : MonoBehaviour
 {
     [SerializeField] private Transform _lightTarget;
     [SerializeField] private Transform _player;
-    
+    [SerializeField] private FocusLight _scriptFocusLight;
+
+
     private bool _lookAtPlayer;
     private Transform target;
     private float interpolationTime;
     private Vector3 _test;
     private Vector3 _direction;
     [SerializeField] private float _rotSpeed;
+
+    private void OnEnable()
+    {
+        _scriptFocusLight._eventSneeze += _scriptFocusLight__eventSneeze;
+    }
+
+    private void _scriptFocusLight__eventSneeze()
+    {
+        _lookAtPlayer = !_lookAtPlayer;
+    }
+
+    private void OnDisable()
+    {
+        _scriptFocusLight._eventSneeze -= _scriptFocusLight__eventSneeze;
+    }
 
     private void Update()
     {
