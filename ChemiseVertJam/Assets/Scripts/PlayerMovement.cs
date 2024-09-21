@@ -1,18 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _runSpeed = 4f;
+    [SerializeField] private float _speed = 2f;
+    [SerializeField] private float _moveTowardSpeed = 1f;
+    [SerializeField] private SplineMovement _scriptSplineMovement;
+    private float _targetSpeed;
+    private float _currentSpeed;
+    private int _speedIndex = 0;
+    private GameInputs _inputActions;
+
+    private void Awake()
     {
-        
+        _inputActions = new GameInputs();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        _inputActions.InGame.StopPlayer.Enable();
+        _inputActions.InGame.RunPlayer.Enable();
+        _inputActions.InGame.RunPlayer.performed += RunPlayer_performed;
+        _inputActions.InGame.StopPlayer.performed += StopPlayer_performed;
+    }
+
+    private void RunPlayer_performed(InputAction.CallbackContext context)
+    {
+        if (_speedIndex == 2)
+        {
+            _speedIndex = 1;
+            _targetSpeed = _speed;
+        }
+        else
+        {
+            _speedIndex = 2;
+            _targetSpeed = _runSpeed;
+        }
+    }
+
+    private void StopPlayer_performed(InputAction.CallbackContext context)
+    {
+        if (_speedIndex == 0)
+        {
+            _speedIndex = 1;
+            _targetSpeed = _speed;
+        }
+        else
+        {
+            _speedIndex = 0;
+            _targetSpeed = 0;
+        }
+    }
+
+    private void Update()
+    {
+        _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
+        _scriptSplineMovement._currentSpeed = _currentSpeed;
+    }
+
+    private void OnDisable()
+    {
+        _inputActions.InGame.StopPlayer.Enable();
+        _inputActions.InGame.RunPlayer.Enable();
+        _inputActions.InGame.RunPlayer.performed -= RunPlayer_performed;
+        _inputActions.InGame.StopPlayer.performed -= StopPlayer_performed;
     }
 }

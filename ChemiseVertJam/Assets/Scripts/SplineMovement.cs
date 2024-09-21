@@ -3,81 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.InputSystem;
+using System;
 
 public class SplineMovement : MonoBehaviour
 {
     [SerializeField] private SplineContainer spline;
     float distancePercentage = 0f;
+    [SerializeField] private bool _pingPong;
 
-    [SerializeField] private float _runSpeed = 4f;
-    [SerializeField] private float _speed = 2f;
-    [SerializeField] private float _moveTowardSpeed = 1f;
-    private float _targetSpeed;
-    private float _currentSpeed;
-    private int _speedIndex = 0;
-    private GameInputs _inputActions;
+    [SerializeField] private bool _vfx;
+    [SerializeField,Range(0,1)] private float _vfxOn;
+    [SerializeField, Range(0, 1)] private float _vfxOff;
+    [SerializeField] private TrailRenderer _trailRenderer;
+
+    public float _currentSpeed = 2f;
+
+    private bool _directionSwitch = true;
 
     float splineLength;
 
-    private void Awake()
-    {
-        _inputActions = new GameInputs();
-    }
-
-    private void OnEnable()
-    {
-        _inputActions.InGame.StopPlayer.Enable();
-        _inputActions.InGame.RunPlayer.Enable();
-        _inputActions.InGame.RunPlayer.performed += RunPlayer_performed;
-        _inputActions.InGame.StopPlayer.performed += StopPlayer_performed;
-    }
-
-    private void RunPlayer_performed(InputAction.CallbackContext context)
-    {
-        if(_speedIndex == 2)
-        {
-            _speedIndex = 1;
-            _targetSpeed = _speed;
-        }
-        else
-        {
-            _speedIndex = 2;
-            _targetSpeed = _runSpeed;
-        }
-    }
-
-    private void StopPlayer_performed(InputAction.CallbackContext context)
-    {
-        if (_speedIndex == 0)
-        {
-            _speedIndex = 1;
-            _targetSpeed = _speed;
-        }
-        else
-        {
-            _speedIndex = 0;
-            _targetSpeed = 0;
-        }
-    }
+    
 
     private void Start()
     {
+        _trailRenderer.emitting = false;
         splineLength = spline.CalculateLength();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
-
-        distancePercentage += _currentSpeed * Time.deltaTime / splineLength;
+        if(_directionSwitch)
+            distancePercentage += _currentSpeed * Time.deltaTime / splineLength;
+        else
+            distancePercentage -= _currentSpeed * Time.deltaTime / splineLength;
 
         Vector3 currentPosition = spline.EvaluatePosition(distancePercentage);
         transform.position = currentPosition;
 
-        if (distancePercentage > 1f)
+        if (_vfx && distancePercentage > _vfxOff) _trailRenderer.emitting = false;
+        if (_vfx && distancePercentage > _vfxOn && distancePercentage < _vfxOn + 0.1f) _trailRenderer.emitting = true;
+
+
+        if (distancePercentage > 1f || distancePercentage < 0f)
         {
-            distancePercentage = 0f;
+            if (_pingPong) _directionSwitch = !_directionSwitch;
+            else distancePercentage = 0f;
         }
 
         Vector3 nextPosition = spline.EvaluatePosition(distancePercentage + 0.05f);
@@ -85,9 +56,5 @@ public class SplineMovement : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(direction, transform.up);
     }
 
-    private void OnDisable()
-    {
-        _inputActions.InGame.StopPlayer.Enable();
-        _inputActions.InGame.RunPlayer.Enable();
-    }
+    
 }
