@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: fa112a87aeb90e44da2c36ee2a4cab9e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Topolino_CircleMaskChrono: {fileID: 2800000, guid: 5bbac70468dcf4640b047ab4940a8461,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

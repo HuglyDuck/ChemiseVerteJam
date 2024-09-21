@@ -35,8 +35,7 @@ public class LightDown : MonoBehaviour
                 go.SetActive(false);
             }
 
-            _timeValue = Time.time + _timer;
-            _scriptResetLightDown.TimerReset(_timeValue);
+            _scriptResetLightDown.TimerReset(_timer);
         }
     }
 
