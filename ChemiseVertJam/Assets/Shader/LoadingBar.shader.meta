@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6935ac560cfeccd4899a4bda3f6b7692
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Topolino_Gauge: {fileID: 2800000, guid: c48e71d80e1fa514e9ff3c0d7e943bbf, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

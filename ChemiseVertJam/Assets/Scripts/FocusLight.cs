@@ -10,6 +10,8 @@ public class FocusLight : MonoBehaviour
     [SerializeField] PlayerMovement _scriptPlayerMovement;
     [SerializeField] float _focusDuration;
 
+    private float _currentTime;
+
     private ESneeze _eSneeze = ESneeze.Timer;
 
     private float _timerValue;
@@ -21,6 +23,11 @@ public class FocusLight : MonoBehaviour
     private void OnEnable()
     {
         _scriptPlayerMovement._eventStartMove += _scriptPlayerMovement__firstRunEvent;
+    }
+
+    private void Start()
+    {
+        Shader.SetGlobalFloat("_ValueGauge", 1);
     }
 
     private void _scriptPlayerMovement__firstRunEvent()
@@ -35,10 +42,37 @@ public class FocusLight : MonoBehaviour
             switch (_eSneeze)
             {
                 case ESneeze.Timer:
-                    Timer(_timerFocusLight, ESneeze.Duration);
+                    if (_startTimer)
+                    {
+                        _startTimer = false;
+                        _timerValue = Time.time + _timerFocusLight;
+                        _currentTime = 1;
+                    }
+                    else _currentTime = (_timerValue - Time.time) / _timerFocusLight;
+
+                    Shader.SetGlobalFloat("_ValueGauge", _currentTime);
+
+                    if (!_startTimer && Time.time >= _timerValue)
+                    {
+                        _startTimer = true;
+                        _eventSneeze?.Invoke();
+                        _eSneeze = ESneeze.Duration;
+                    }
                     break;
                 case ESneeze.Duration:
-                    Timer(_focusDuration, ESneeze.Timer);
+                    if (_startTimer)
+                    {
+                        _startTimer = false;
+                        _timerValue = Time.time + _focusDuration;
+                    }
+                    else
+
+                    if (!_startTimer && Time.time >= _timerValue)
+                    {
+                        _startTimer = true;
+                        _eventSneeze?.Invoke();
+                        _eSneeze = ESneeze.Timer;
+                    }
                     break;
             }
         }
@@ -53,6 +87,8 @@ public class FocusLight : MonoBehaviour
             _startTimer = false;
             _timerValue = Time.time + duration;
         }
+        else
+
         if (!_startTimer && Time.time >= _timerValue)
         {
             _startTimer = true;
