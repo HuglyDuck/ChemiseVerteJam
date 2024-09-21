@@ -72,12 +72,12 @@ public class DetectPlayer : MonoBehaviour
                 if (hit.collider.transform.CompareTag("Player"))
                 {
                     _inLight = true;
-                    print("true");
+                    
                 }
                 else
                 {
                     _inLight = false;
-                    print("false");
+                    
                 }
 
             }
