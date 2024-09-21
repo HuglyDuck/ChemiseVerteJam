@@ -8,13 +8,8 @@ using System;
 public class SplineMovement : MonoBehaviour
 {
     [SerializeField] private SplineContainer spline;
-    float distancePercentage = 0f;
+    public float distancePercentage {  get; private set; }
     [SerializeField] private bool _pingPong;
-
-    [SerializeField] private bool _vfx;
-    [SerializeField,Range(0,1)] private float _vfxOn;
-    [SerializeField, Range(0, 1)] private float _vfxOff;
-    [SerializeField] private TrailRenderer _trailRenderer;
 
     public float _currentSpeed = 2f;
 
@@ -26,7 +21,7 @@ public class SplineMovement : MonoBehaviour
 
     private void Start()
     {
-        _trailRenderer.emitting = false;
+        
         splineLength = spline.CalculateLength();
     }
 
@@ -40,10 +35,6 @@ public class SplineMovement : MonoBehaviour
 
         Vector3 currentPosition = spline.EvaluatePosition(distancePercentage);
         transform.position = currentPosition;
-
-        if (_vfx && distancePercentage > _vfxOff) _trailRenderer.emitting = false;
-        if (_vfx && distancePercentage > _vfxOn && distancePercentage < _vfxOn + 0.1f) _trailRenderer.emitting = true;
-
 
         if (distancePercentage > 1f || distancePercentage < 0f)
         {
