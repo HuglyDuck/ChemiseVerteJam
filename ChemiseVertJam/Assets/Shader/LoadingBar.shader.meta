@@ -3,7 +3,8 @@ guid: 6935ac560cfeccd4899a4bda3f6b7692
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _Topolino_Gauge: {fileID: 2800000, guid: c48e71d80e1fa514e9ff3c0d7e943bbf, type: 3}
+  - _noise_15: {fileID: 2800000, guid: 05f9b50644ebbeb47b8b5ddbbfd1663d, type: 3}
+  - _Mouse_Sneeze: {fileID: 2800000, guid: bf20054f2a5cbc5468bef571c985d05c, type: 3}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 
