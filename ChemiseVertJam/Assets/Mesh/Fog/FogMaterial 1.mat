@@ -62,7 +62,7 @@ Material:
     m_Floats:
     - Vector1_21A90898: 4.8
     - Vector1_6E5AA9CB: 1
-    - Vector1_EDD429AC: 58.6
+    - Vector1_EDD429AC: 180
     - _QueueControl: 0
     - _QueueOffset: 0
     - _alpha: 1.4
