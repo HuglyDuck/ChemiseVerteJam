@@ -1028,7 +1028,6 @@ MonoBehaviour:
   _layerToIgnore:
     serializedVersion: 2
     m_Bits: 128
-  _timerDeath: 3
   _targetObject: {fileID: 0}
 --- !u!114 &1474620600
 MonoBehaviour:
@@ -1162,18 +1161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce251f060b9bd0449a3e06588d19b7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlPoints:
-  - {fileID: 2028022584}
-  - {fileID: 423639975}
-  - {fileID: 208948004}
-  - {fileID: 966167974}
-  - {fileID: 1037796203}
-  - {fileID: 694655180}
-  - {fileID: 23496227}
-  _constantSpeed: 0
-  _splineSpeed: 10
-  _splineProgress: 0
-  _splineResolution: 30
 --- !u!4 &1536432875
 Transform:
   m_ObjectHideFlags: 0
@@ -1256,15 +1243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce251f060b9bd0449a3e06588d19b7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlPoints:
-  - {fileID: 1991232300}
-  - {fileID: 585184959}
-  - {fileID: 983562393}
-  - {fileID: 1557213700}
-  _constantSpeed: 0
-  _splineSpeed: 10
-  _splineProgress: 0
-  _splineResolution: 30
 --- !u!4 &1589215192
 Transform:
   m_ObjectHideFlags: 0
@@ -1643,7 +1621,17 @@ PrefabInstance:
     - target: {fileID: 4467210487630058684, guid: 2440f63196b207b4a94f45a11f22e1fa,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531773636949234961, guid: 2440f63196b207b4a94f45a11f22e1fa,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641696951508613422, guid: 2440f63196b207b4a94f45a11f22e1fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

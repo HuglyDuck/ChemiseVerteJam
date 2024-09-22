@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -33,9 +32,14 @@ public class InputsSwitch : MonoBehaviour
 
     private void OpenPauseMenu(InputAction.CallbackContext ctx)
     {
-        if (_settingsMenu.activeSelf || (_popUpPanel != null && _popUpPanel.activeSelf) || _endingScreen.activeSelf)
+        if (_settingsMenu.activeSelf || _endingScreen.activeSelf)
         {
             return;
+        }
+
+        if (_popUpPanel.activeSelf)
+        {
+            _popUpPanel.SetActive(false);
         }
 
         if (_pauseMenu.activeSelf)
@@ -50,6 +54,4 @@ public class InputsSwitch : MonoBehaviour
             _resumeButton.Select();
         }
     }
-
-
 }
