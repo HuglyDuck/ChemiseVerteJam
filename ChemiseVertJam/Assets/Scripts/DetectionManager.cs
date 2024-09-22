@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class DetectionManager : MonoBehaviour
     [SerializeField] public float timer = 0f;
 
     private int detectionCount = 0;
+
+   
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class DetectionManager : MonoBehaviour
             timer -= Time.deltaTime * 2f;
             timer = Mathf.Clamp(timer, 0f, timerDeath);
         }
+        
     }
 
     public void PlayerDetected()
