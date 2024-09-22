@@ -23,8 +23,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Mouse_Sneeze:
+        m_Texture: {fileID: 2800000, guid: bf20054f2a5cbc5468bef571c985d05c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Topolino_Gauge:
         m_Texture: {fileID: 2800000, guid: c48e71d80e1fa514e9ff3c0d7e943bbf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _noise_15:
+        m_Texture: {fileID: 2800000, guid: d8b198bd3936a22418729654a7a8b530, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -50,6 +58,7 @@ Material:
     - _Float1: 0.47
     - _Float2: 0.0474
     - _Float3: 0.0396
+    - _Multiply: 1.75
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -60,13 +69,16 @@ Material:
     - _TessPhongStrength: 0.5
     - _TessValue: 16
     - _ValueBar: 0.121
+    - _ValueGauge: 0.236
     - _notch: 50
     - _notch1: 20
+    - _power: 15.25
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GaugeColor: {r: 0.24701852, g: 0.53987277, b: 0.5754717, a: 0}
-    - _GaugeColor1: {r: 0.11779833, g: 1, b: 0, a: 0}
-    - _GaugeColor2: {r: 1, g: 0.010215757, b: 0, a: 0}
+    - _GaugeColor1: {r: 0, g: 8.574187, b: 8.163426, a: 0}
+    - _GaugeColor2: {r: 0.18818305, g: 0.37441435, b: 0.88655114, a: 0}
   m_BuildTextureStacks: []

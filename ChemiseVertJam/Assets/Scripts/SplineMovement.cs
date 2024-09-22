@@ -17,6 +17,8 @@ public class SplineMovement : MonoBehaviour
 
     float splineLength;
 
+    public event Action _EndSpline;
+
     
 
     private void Start()
@@ -40,6 +42,7 @@ public class SplineMovement : MonoBehaviour
         {
             if (_pingPong) _directionSwitch = !_directionSwitch;
             else distancePercentage = 0f;
+            _EndSpline?.Invoke();
         }
 
         Vector3 nextPosition = spline.EvaluatePosition(distancePercentage + 0.05f);
