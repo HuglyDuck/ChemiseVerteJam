@@ -11,6 +11,7 @@ public class InputsSwitch : MonoBehaviour
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _popUpPanel;
+    [SerializeField] private GameObject _endingScreen;
     [SerializeField] private Button _resumeButton;
 
     private void Awake()
@@ -32,7 +33,7 @@ public class InputsSwitch : MonoBehaviour
 
     private void OpenPauseMenu(InputAction.CallbackContext ctx)
     {
-        if (_settingsMenu.activeSelf || (_popUpPanel != null && _popUpPanel.activeSelf))
+        if (_settingsMenu.activeSelf || (_popUpPanel != null && _popUpPanel.activeSelf) || _endingScreen.activeSelf)
         {
             return;
         }
