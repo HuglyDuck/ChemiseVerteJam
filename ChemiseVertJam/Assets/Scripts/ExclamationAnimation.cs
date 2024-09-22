@@ -7,12 +7,13 @@ public class ExclamationAnimation : MonoBehaviour
     [SerializeField] private GameObject _gameObject;
     private float _alpha = 1f;
     private float _gradient = 0.01f;
-    [SerializeField] private float _GradientMax = 1f;  
-    [SerializeField] private float _GradientMin = 0f;  
+    [SerializeField] private float _GradientMax = 1f;
+    [SerializeField] private float _GradientMin = 0f;
     [SerializeField] private float _gradientSpeed = 1f;
     public DetectionManager detectionManager;
 
     private Material _material;
+    private Camera _mainCamera;
 
     void Start()
     {
@@ -25,15 +26,25 @@ public class ExclamationAnimation : MonoBehaviour
                 _material = renderer.material;
             }
         }
+
+        // Récupérer la caméra principale
+        _mainCamera = Camera.main;
     }
 
     void Update()
     {
+        // Si le GameObject est assigné, il regardera la caméra
+        if (_gameObject != null && _mainCamera != null)
+        {
+            // Faire en sorte que l'objet regarde constamment vers la caméra
+            _gameObject.transform.LookAt(_mainCamera.transform);
 
+            // Inverser la rotation en Y pour que l'objet ne soit pas à l'envers
+            _gameObject.transform.Rotate(0, 180, 0);
+        }
 
         _material.SetFloat("_Gradient", _gradient);
         _material.SetFloat("_Alpha", _alpha);
-
 
         if (_gradient > _GradientMin)
         {
@@ -50,7 +61,6 @@ public class ExclamationAnimation : MonoBehaviour
         }
         else
         {
-
             OnDetected();
         }
     }
@@ -63,7 +73,6 @@ public class ExclamationAnimation : MonoBehaviour
 
     private void Undetected()
     {
-        
         _gradient = Mathf.MoveTowards(_gradient, _GradientMin, _gradientSpeed * Time.deltaTime);
     }
 }

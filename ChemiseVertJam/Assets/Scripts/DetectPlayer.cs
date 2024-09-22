@@ -12,7 +12,7 @@ public class DetectPlayer : MonoBehaviour
 
     private bool _inLight;
     private bool _inCircle;
-    private bool _isDetectingPlayer = false;  // Nouveau booléen pour suivre l'état de détection
+    private bool _isDetectingPlayer = false;
 
     [SerializeField] private GameObject _targetObject;
 
@@ -34,29 +34,32 @@ public class DetectPlayer : MonoBehaviour
         {
             if (!_isDetectingPlayer)
             {
-                DetectionManager.Instance.PlayerDetected();  // Signaler la détection au gestionnaire
+                DetectionManager.Instance.PlayerDetected();
                 _isDetectingPlayer = true;
             }
 
             _spotLight.color = _color;
-            DetectionManager.Instance.timer += Time.deltaTime;  // Augmenter le timer global
+            DetectionManager.Instance.timer += Time.deltaTime; 
 
             if (DetectionManager.Instance.timer >= DetectionManager.Instance.timerDeath)
             {
                 Debug.Log("Player Died");
-                // Ici, tu peux déclencher la mort du joueur ou une autre action
             }
         }
         else
         {
             if (_isDetectingPlayer)
             {
-                DetectionManager.Instance.PlayerLost();  // Signaler la perte de détection au gestionnaire
+                DetectionManager.Instance.PlayerLost();
                 _isDetectingPlayer = false;
             }
         }
     }
-
+    private void OnDisable()
+    {
+        DetectionManager.Instance.PlayerLost();
+        _isDetectingPlayer = false;
+    }
     private void CheckVisibility()
     {
         foreach (var target in PlayerTargets.Instance.Targets)
