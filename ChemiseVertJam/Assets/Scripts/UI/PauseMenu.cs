@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button _playButton;
 
     [SerializeField] private int _mainMenuSceneIndex = 0;
+
     private GameInputs _gameInputs;
 
 
