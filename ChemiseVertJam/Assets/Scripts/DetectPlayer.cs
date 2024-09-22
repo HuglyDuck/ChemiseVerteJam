@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class DetectPlayer : MonoBehaviour
     private bool _isDetectingPlayer = false;
 
     [SerializeField] private GameObject _targetObject;
+
+    public static event Action OnPlayerDied;
 
     private void Update()
     {
@@ -44,6 +47,7 @@ public class DetectPlayer : MonoBehaviour
             if (DetectionManager.Instance.timer >= DetectionManager.Instance.timerDeath)
             {
                 Debug.Log("Player Died");
+                OnPlayerDied?.Invoke();
             }
         }
         else

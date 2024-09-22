@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScrollCurtains : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class ScrollCurtains : MonoBehaviour
     [SerializeField] private AnimationCurve _scrollUpCurve;
     [SerializeField] private bool _startAtBottom = false;
 
+    [SerializeField] private SplineMovement _movement;
+
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private bool _isScrolling = false;
     private float _scrollTime = 0f;
     private float _scrollDuration;
+    private bool _restartOnBottom = false;
 
     private void Awake()
     {
@@ -28,6 +32,18 @@ public class ScrollCurtains : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        _movement._EndSpline += HandleEndSpline;
+        DetectPlayer.OnPlayerDied += HandleEndSpline;
+    }
+
+    private void OnDisable()
+    {
+        _movement._EndSpline -= HandleEndSpline;
+        DetectPlayer.OnPlayerDied -= HandleEndSpline;
+    }
+
     private void Start()
     {
         if (_startAtBottom)
@@ -37,26 +53,13 @@ public class ScrollCurtains : MonoBehaviour
 
         _startPosition = transform.position;
         _targetPosition = transform.position;
+
+        ScrollUp();
     }
 
     private void Update()
     {
-        if (_isScrolling)
-        {
-            _scrollTime += Time.deltaTime;
-
-            float normalizedTime = _scrollTime / _scrollDuration;
-
-            AnimationCurve currentCurve = _targetPosition.y == _topLimit ? _scrollUpCurve : _scrollDownCurve;
-
-            float curveValue = currentCurve.Evaluate(normalizedTime);
-            transform.position = Vector3.Lerp(_startPosition, _targetPosition, curveValue);
-
-            if (normalizedTime >= 1f)
-            {
-                _isScrolling = false;
-            }
-        }
+        UpdateScroll();
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -66,6 +69,37 @@ public class ScrollCurtains : MonoBehaviour
         {
             ScrollUp();
         }
+    }
+
+    private void UpdateScroll()
+    {
+        if (_isScrolling)
+        {
+            _scrollTime += Time.deltaTime;
+
+            float normalizedTime = _scrollTime / _scrollDuration;
+            AnimationCurve currentCurve = _targetPosition.y == _topLimit ? _scrollUpCurve : _scrollDownCurve;
+
+            float curveValue = currentCurve.Evaluate(normalizedTime);
+            transform.position = Vector3.Lerp(_startPosition, _targetPosition, curveValue);
+
+            if (normalizedTime >= 1f)
+            {
+                _isScrolling = false;
+
+                if (_targetPosition.y == _bottomLimit && _restartOnBottom)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    Debug.Log("Scene Restarted");
+                }
+            }
+        }
+    }
+
+    private void HandleEndSpline()
+    {
+        _restartOnBottom = true;
+        ScrollDown();
     }
 
     public void ScrollDown()
