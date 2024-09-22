@@ -70,7 +70,7 @@ public class ObjectMovement : MonoBehaviour
         {
             UpdateMovement();
         }
-        float targetRotationZ = Mathf.Lerp(-30f, 30f, (_input + 1f) / 2f);
+        float targetRotationZ = Mathf.Lerp(-15f, 15f, (_input + 1f) / 2f);
         transform.rotation = Quaternion.Euler(0f, 0f, targetRotationZ);
     }
 
