@@ -89,6 +89,24 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateCamH"",
+                    ""type"": ""Value"",
+                    ""id"": ""eddf8ac9-9357-49f0-b485-8e61204690ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCamV"",
+                    ""type"": ""Value"",
+                    ""id"": ""ba8031e4-d88d-4eec-a84c-edf7c058b079"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -366,6 +384,72 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""action"": ""RunPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""GamePad"",
+                    ""id"": ""8beeb67a-eebb-4e25-b9e1-cafb3a531189"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamH"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1cdadde9-4621-49e2-9a0d-e96f1fad6a4a"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9e812b27-97af-44e0-9556-5f00baa79ead"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""GamePad"",
+                    ""id"": ""dfe2850b-9b5e-43a6-a998-ccea282258a3"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamV"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7cd1078f-3426-4564-b8c0-573035f4bfc2"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6a91176f-001e-4a91-b1bb-e5de6d79cc02"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -817,6 +901,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         m_InGame_PauseGame = m_InGame.FindAction("PauseGame", throwIfNotFound: true);
         m_InGame_SelectObject = m_InGame.FindAction("SelectObject", throwIfNotFound: true);
         m_InGame_RunPlayer = m_InGame.FindAction("RunPlayer", throwIfNotFound: true);
+        m_InGame_RotateCamH = m_InGame.FindAction("RotateCamH", throwIfNotFound: true);
+        m_InGame_RotateCamV = m_InGame.FindAction("RotateCamV", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -893,6 +979,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_PauseGame;
     private readonly InputAction m_InGame_SelectObject;
     private readonly InputAction m_InGame_RunPlayer;
+    private readonly InputAction m_InGame_RotateCamH;
+    private readonly InputAction m_InGame_RotateCamV;
     public struct InGameActions
     {
         private @GameInputs m_Wrapper;
@@ -904,6 +992,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_InGame_PauseGame;
         public InputAction @SelectObject => m_Wrapper.m_InGame_SelectObject;
         public InputAction @RunPlayer => m_Wrapper.m_InGame_RunPlayer;
+        public InputAction @RotateCamH => m_Wrapper.m_InGame_RotateCamH;
+        public InputAction @RotateCamV => m_Wrapper.m_InGame_RotateCamV;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -934,6 +1024,12 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @RunPlayer.started += instance.OnRunPlayer;
             @RunPlayer.performed += instance.OnRunPlayer;
             @RunPlayer.canceled += instance.OnRunPlayer;
+            @RotateCamH.started += instance.OnRotateCamH;
+            @RotateCamH.performed += instance.OnRotateCamH;
+            @RotateCamH.canceled += instance.OnRotateCamH;
+            @RotateCamV.started += instance.OnRotateCamV;
+            @RotateCamV.performed += instance.OnRotateCamV;
+            @RotateCamV.canceled += instance.OnRotateCamV;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -959,6 +1055,12 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             @RunPlayer.started -= instance.OnRunPlayer;
             @RunPlayer.performed -= instance.OnRunPlayer;
             @RunPlayer.canceled -= instance.OnRunPlayer;
+            @RotateCamH.started -= instance.OnRotateCamH;
+            @RotateCamH.performed -= instance.OnRotateCamH;
+            @RotateCamH.canceled -= instance.OnRotateCamH;
+            @RotateCamV.started -= instance.OnRotateCamV;
+            @RotateCamV.performed -= instance.OnRotateCamV;
+            @RotateCamV.canceled -= instance.OnRotateCamV;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -1071,6 +1173,8 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnSelectObject(InputAction.CallbackContext context);
         void OnRunPlayer(InputAction.CallbackContext context);
+        void OnRotateCamH(InputAction.CallbackContext context);
+        void OnRotateCamV(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
