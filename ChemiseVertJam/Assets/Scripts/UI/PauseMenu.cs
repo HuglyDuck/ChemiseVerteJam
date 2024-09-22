@@ -23,17 +23,17 @@ public class PauseMenu : MonoBehaviour
     {
         _gameInputs = new GameInputs();
     }
-    private void OnEnable()
-    {
-        _playButton.Select();
-        _gameInputs.UI.Cancel.Enable();
-        _gameInputs.UI.Cancel.performed += CloseAllPanels;
-    }
-    private void OnDisable()
-    {
-        _gameInputs.UI.Cancel.Disable();
-        _gameInputs.UI.Cancel.performed -= CloseAllPanels;
-    }
+    //private void OnEnable()
+    //{
+    //    _playButton.Select();
+    //    _gameInputs.UI.Cancel.Enable();
+    //    _gameInputs.UI.Cancel.performed += CloseAllPanels;
+    //}
+    //private void OnDisable()
+    //{
+    //    _gameInputs.UI.Cancel.Disable();
+    //    _gameInputs.UI.Cancel.performed -= CloseAllPanels;
+    //}
 
     public void ResumeGame()
     {
