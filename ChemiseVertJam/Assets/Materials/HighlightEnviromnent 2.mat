@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3413861507873471304
+--- !u!114 &-2652992035950357960
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HudWood
-  m_Shader: {fileID: -6465566751694194690, guid: 955da0733a7ff164785a5501ee16ed8f,
+  m_Name: HighlightEnviromnent 2
+  m_Shader: {fileID: -6465566751694194690, guid: 8fe2c9f2cf7643b4d9291d1a853ec40a,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,16 +37,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AoRM:
-        m_Texture: {fileID: 2800000, guid: cf49832415d204c419b38013e1fbe906, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 0b9f614ab5d3cc74cb930dc1f1758a19, type: 3}
+        m_Texture: {fileID: 2800000, guid: c88c4e0e0604a0f4ab29788c6abce97b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: a74fb65065400e94f8a705245c6818a2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a776716f4202f14b85be78b8f62ce34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OccRouMet:
+        m_Texture: {fileID: 2800000, guid: b2d5945984a3d7e488a8f15cc43e191a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -63,7 +63,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _EdgeBloom: 1.23
+    - _EdgeDepthThreshold: 0.04
+    - _EdgeRobertCross: 3.6
+    - _EdgeScale: 3.11
+    - _EdgeStepAngle: 1.56
+    - _FresenlBloom: 1
+    - _LeftValue: 0
+    - _MiddleValue: 1
+    - _NormalThresHold: 0.25
+    - _PowerFresnel: 0.46
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _RightValue: 0
+    m_Colors:
+    - _EdgeColor: {r: 1, g: 0.389009, b: 0, a: 0}
+    - _FresnelColor: {r: 0.7584905, g: 0.7584905, b: 0.7584905, a: 0}
   m_BuildTextureStacks: []

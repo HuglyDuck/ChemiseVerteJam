@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HudWood
+  m_Name: Door
   m_Shader: {fileID: -6465566751694194690, guid: 955da0733a7ff164785a5501ee16ed8f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,15 +38,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AoRM:
-        m_Texture: {fileID: 2800000, guid: cf49832415d204c419b38013e1fbe906, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3fa0d91407aabe84daefad77caff6227, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 0b9f614ab5d3cc74cb930dc1f1758a19, type: 3}
+        m_Texture: {fileID: 2800000, guid: d90f1d1c007db784f946104bc6832ec3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: a74fb65065400e94f8a705245c6818a2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 130a5fe661029634395398e3e9f5060d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
