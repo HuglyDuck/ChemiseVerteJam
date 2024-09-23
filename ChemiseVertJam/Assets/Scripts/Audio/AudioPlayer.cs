@@ -11,9 +11,21 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] float _minSpeedStep;
     [SerializeField] float _SpeedStep;
 
+
+    [SerializeField] private AudioClip _sneezeSound;
+    [SerializeField] private AudioSource _sneezeSource;
     private bool _isPlaying = true;
     private float _timerStep;
-    
+
+    private void OnEnable()
+    {
+        FocusLight._atchoum += PlaySneezeSound;
+    }
+
+    private void OnDisable()
+    {
+        FocusLight._atchoum -= PlaySneezeSound;
+    }
 
     private void Update()
     {
@@ -26,5 +38,10 @@ public class AudioPlayer : MonoBehaviour
         }
         else if (_timerStep >= 1) _isPlaying = true;
         else _timerStep += Time.deltaTime * (_minSpeedStep + (PlayerMovement.speedPourcentage * _SpeedStep));
+    }
+
+    private void PlaySneezeSound()
+    {
+       _sneezeSource.PlayOneShot(_sneezeSound);
     }
 }
