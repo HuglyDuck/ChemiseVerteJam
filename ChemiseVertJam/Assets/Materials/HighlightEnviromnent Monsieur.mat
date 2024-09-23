@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HighlightEnviromnent
+  m_Name: HighlightEnviromnent Monsieur
   m_Shader: {fileID: -6465566751694194690, guid: 8fe2c9f2cf7643b4d9291d1a853ec40a,
     type: 3}
   m_Parent: {fileID: 0}
@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _PowerFresnel
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -68,11 +68,11 @@ Material:
     - _EdgeRobertCross: 3.6
     - _EdgeScale: 3.11
     - _EdgeStepAngle: 1.56
-    - _FresenlBloom: 1
+    - _FresenlBloom: 2.12
     - _LeftValue: 0
     - _MiddleValue: 1
     - _NormalThresHold: 0.25
-    - _PowerFresnel: 0.46
+    - _PowerFresnel: 2.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RightValue: 0

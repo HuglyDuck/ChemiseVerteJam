@@ -981,7 +981,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7498552927877309688, guid: 5b416bc0565ef19478363b246e91b8f2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b416bc0565ef19478363b246e91b8f2, type: 3}
@@ -1478,7 +1479,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _scriptFocusLight
       value: 
-      objectReference: {fileID: 1667574321}
+      objectReference: {fileID: 0}
     - target: {fileID: 6266450686231195563, guid: 73b96ae9b2940f84caa02b1eb6ccf23a,
         type: 3}
       propertyPath: m_Name
@@ -7373,7 +7374,6 @@ GameObject:
   - component: {fileID: 1667574324}
   - component: {fileID: 1667574323}
   - component: {fileID: 1667574322}
-  - component: {fileID: 1667574321}
   - component: {fileID: 1667574320}
   - component: {fileID: 1667574325}
   - component: {fileID: 1667574328}
@@ -7401,21 +7401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHValue: 3
   _maxVValue: 3
---- !u!114 &1667574321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667574319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17514373e316f904da4c0840fbcd2d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timerFocusLight: 15
-  _scriptPlayerMovement: {fileID: 847461418}
-  _focusDuration: 3
 --- !u!114 &1667574322
 MonoBehaviour:
   m_ObjectHideFlags: 0

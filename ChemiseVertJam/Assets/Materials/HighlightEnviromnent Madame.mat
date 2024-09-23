@@ -68,15 +68,15 @@ Material:
     - _EdgeRobertCross: 3.6
     - _EdgeScale: 3.11
     - _EdgeStepAngle: 1.56
-    - _FresenlBloom: 1.62
+    - _FresenlBloom: 2.12
     - _LeftValue: 0
     - _MiddleValue: 0
     - _NormalThresHold: 0.25
-    - _PowerFresnel: 2.28
+    - _PowerFresnel: 2.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RightValue: 1
     m_Colors:
     - _EdgeColor: {r: 1, g: 0.389009, b: 0, a: 0}
-    - _FresnelColor: {r: 0.7584905, g: 0.7584905, b: 0.7584905, a: 0}
+    - _FresnelColor: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 0}
   m_BuildTextureStacks: []

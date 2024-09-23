@@ -280,7 +280,8 @@ MonoBehaviour:
   _interactObjectList:
   - {fileID: 901817334}
   - {fileID: 973838971}
-  _linkedObjects: []
+  _linkedObjects:
+  - {fileID: 150457528}
 --- !u!4 &55039198
 Transform:
   m_ObjectHideFlags: 0

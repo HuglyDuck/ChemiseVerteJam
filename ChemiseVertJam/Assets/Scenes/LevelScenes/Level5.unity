@@ -10186,7 +10186,8 @@ MonoBehaviour:
   - {fileID: 2107578816}
   - {fileID: 959059336}
   - {fileID: 383293694}
-  _linkedObjects: []
+  _linkedObjects:
+  - {fileID: 1828779342}
 --- !u!4 &2092528686
 Transform:
   m_ObjectHideFlags: 0

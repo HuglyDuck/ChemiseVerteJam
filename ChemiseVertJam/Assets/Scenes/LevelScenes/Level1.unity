@@ -1126,7 +1126,6 @@ GameObject:
   - component: {fileID: 181207122}
   - component: {fileID: 181207121}
   - component: {fileID: 181207120}
-  - component: {fileID: 181207119}
   - component: {fileID: 181207118}
   - component: {fileID: 181207123}
   - component: {fileID: 181207126}
@@ -1154,21 +1153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHValue: 3
   _maxVValue: 3
---- !u!114 &181207119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181207117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17514373e316f904da4c0840fbcd2d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timerFocusLight: 15
-  _scriptPlayerMovement: {fileID: 505015678}
-  _focusDuration: 3
 --- !u!114 &181207120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactObjectList:
   - {fileID: 2097150156}
-  _linkedObjects: []
+  _linkedObjects:
+  - {fileID: 783655322}
 --- !u!4 &181207122
 Transform:
   m_ObjectHideFlags: 0
@@ -2894,18 +2879,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2472966543998261523}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &505015678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3407895722853254834, guid: 0190e297c8fe8d445a3c49e78176dc30,
-    type: 3}
-  m_PrefabInstance: {fileID: 2472966543998261523}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505015677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2a97173eef6824c9bbbd54bec083b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &505015679 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4570146307255701922, guid: 0190e297c8fe8d445a3c49e78176dc30,
@@ -5552,16 +5525,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FixedLight 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193175427894956150, guid: 5f44af49571d88a4c904e340398b961c,
-        type: 3}
-      propertyPath: m_SpotAngle
-      value: 42.89574
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193175427894956150, guid: 5f44af49571d88a4c904e340398b961c,
-        type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 32.861534
       objectReference: {fileID: 0}
     - target: {fileID: 7260473396404897304, guid: 5f44af49571d88a4c904e340398b961c,
         type: 3}
@@ -15280,7 +15243,8 @@ PrefabInstance:
       value: -0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7498552927877309688, guid: 5b416bc0565ef19478363b246e91b8f2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b416bc0565ef19478363b246e91b8f2, type: 3}
