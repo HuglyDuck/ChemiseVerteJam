@@ -19,7 +19,8 @@ public class MovingLights : MonoBehaviour
 
     private void OnEnable()
     {
-        _scriptFocusLight._eventSneeze += _scriptFocusLight__eventSneeze;
+        if(_scriptFocusLight != null)
+            _scriptFocusLight._eventSneeze += _scriptFocusLight__eventSneeze;
     }
 
     private void _scriptFocusLight__eventSneeze()
@@ -29,7 +30,8 @@ public class MovingLights : MonoBehaviour
 
     private void OnDisable()
     {
-        _scriptFocusLight._eventSneeze -= _scriptFocusLight__eventSneeze;
+        if (_scriptFocusLight != null)
+            _scriptFocusLight._eventSneeze -= _scriptFocusLight__eventSneeze;
     }
 
     private void Update()
