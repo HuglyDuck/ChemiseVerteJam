@@ -3003,6 +3003,7 @@ GameObject:
   - component: {fileID: 544456978}
   - component: {fileID: 544456977}
   - component: {fileID: 544456976}
+  - component: {fileID: 544456979}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3139,6 +3140,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fullScreen: {fileID: 2100000, guid: 8742ce4d0d2d2f34081dc538489b3577, type: 2}
+--- !u!114 &544456979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544456969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348183db25626ec4db4069b786733570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1179137998}
 --- !u!1 &557457673
 GameObject:
   m_ObjectHideFlags: 0
@@ -5543,6 +5557,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0190e297c8fe8d445a3c49e78176dc30, type: 3}
+--- !u!95 &1179137998 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 411254831606689790, guid: 0190e297c8fe8d445a3c49e78176dc30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1179137997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1192704794
 PrefabInstance:
   m_ObjectHideFlags: 0
