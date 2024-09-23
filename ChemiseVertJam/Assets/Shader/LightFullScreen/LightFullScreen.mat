@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Activate: 1
+    - _Activate: 0
     - _ColorIntensity: 8.74
     - _Mask: 0
     - _SpeedFactor: -0.44
