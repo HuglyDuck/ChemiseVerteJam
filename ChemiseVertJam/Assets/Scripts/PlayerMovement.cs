@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public event Action _eventStartMove;
     private bool _startMove = true;
 
+    public static float speedPourcentage {  get; private set; }
+
     private void Awake()
     {
         _inputActions = new GameInputs();
@@ -75,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
         _scriptSplineMovement._currentSpeed = _currentSpeed;
+        speedPourcentage = _currentSpeed / _runSpeed;
     }
 
     private void OnDisable()

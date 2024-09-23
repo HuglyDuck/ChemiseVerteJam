@@ -79,6 +79,6 @@ Material:
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GaugeColor: {r: 0.24701852, g: 0.53987277, b: 0.5754717, a: 0}
-    - _GaugeColor1: {r: 0, g: 8.574187, b: 8.163426, a: 0}
+    - _GaugeColor1: {r: 0, g: 1.6055588, b: 1.5286418, a: 0}
     - _GaugeColor2: {r: 0.18818305, g: 0.37441435, b: 0.88655114, a: 0}
   m_BuildTextureStacks: []

@@ -19,6 +19,7 @@ public class FocusLight : MonoBehaviour
     private bool _startTimer = true;
 
     public event Action _eventSneeze;
+    public static event Action _atchoum;
 
     private void OnEnable()
     {
@@ -56,6 +57,7 @@ public class FocusLight : MonoBehaviour
                     {
                         _startTimer = true;
                         _eventSneeze?.Invoke();
+                        _atchoum?.Invoke();
                         _eSneeze = ESneeze.Duration;
                     }
                     break;

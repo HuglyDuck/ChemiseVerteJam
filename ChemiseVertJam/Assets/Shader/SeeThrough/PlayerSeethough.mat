@@ -43,5 +43,5 @@ Material:
     - _ReceiveShadows: 1
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SilhouetteColor: {r: 0.4575472, g: 1, b: 0.5655352, a: 0}
+    - _SilhouetteColor: {r: 0.45882356, g: 1, b: 0.9468119, a: 0}
   m_BuildTextureStacks: []
