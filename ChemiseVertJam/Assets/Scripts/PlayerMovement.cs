@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float _currentSpeed;
     private int _speedIndex = 0;
     private GameInputs _inputActions;
+    private bool _dead = false;
 
     public event Action _eventStartMove;
     private bool _startMove = true;
@@ -27,14 +28,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        DetectPlayer.OnPlayerDied += DetectPlayer_OnPlayerDied;
         _inputActions.InGame.StopPlayer.Enable();
         _inputActions.InGame.RunPlayer.Enable();
         _inputActions.InGame.RunPlayer.performed += RunPlayer_performed;
         _inputActions.InGame.StopPlayer.performed += StopPlayer_performed;
     }
 
+    private void DetectPlayer_OnPlayerDied()
+    {
+        _targetSpeed = 0;
+        _dead = true;
+    }
+
     private void RunPlayer_performed(InputAction.CallbackContext context)
     {
+        if (_dead) return;
+
         if (_speedIndex == 2)
         {
             _speedIndex = 1;
@@ -55,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopPlayer_performed(InputAction.CallbackContext context)
     {
+        if (_dead) return;
+
         if (_speedIndex == 0)
         {
             _speedIndex = 1;
@@ -75,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(!_dead && DetectionManager.Instance.timer > 0)
+        {
+            _speedIndex = 1;
+            _targetSpeed = _speed;
+        }
+
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
         _scriptSplineMovement._currentSpeed = _currentSpeed;
         speedPourcentage = _currentSpeed / _runSpeed;
@@ -82,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
+        DetectPlayer.OnPlayerDied -= DetectPlayer_OnPlayerDied;
         _inputActions.InGame.StopPlayer.Enable();
         _inputActions.InGame.RunPlayer.Enable();
         _inputActions.InGame.RunPlayer.performed -= RunPlayer_performed;
