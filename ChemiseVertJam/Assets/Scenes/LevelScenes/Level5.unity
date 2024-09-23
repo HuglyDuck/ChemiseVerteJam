@@ -5450,16 +5450,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[UI_LEVEL]'
       objectReference: {fileID: 0}
-    - target: {fileID: 6531773636949234961, guid: 2440f63196b207b4a94f45a11f22e1fa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7467408702377466460, guid: 2440f63196b207b4a94f45a11f22e1fa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10113,6 +10103,7 @@ GameObject:
   - component: {fileID: 2092528687}
   - component: {fileID: 2092528688}
   - component: {fileID: 2092528689}
+  - component: {fileID: 2092528690}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -10238,6 +10229,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b19e7a1a100a409d689295f8b0dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2092528690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092528681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd90f25a041af3c4e97a94ce813b5b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 1860559101}
 --- !u!1001 &2099080873
 PrefabInstance:
   m_ObjectHideFlags: 0
