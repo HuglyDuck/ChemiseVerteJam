@@ -144,6 +144,7 @@ public class ScrollCurtains : MonoBehaviour
     public void ScrollDown()
     {
         StartScrolling(_bottomLimit, _scrollDownCurve);
+        GamepadRumble.Instance.StopRumble();
     }
 
     public void ScrollUp()

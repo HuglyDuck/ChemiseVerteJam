@@ -58,4 +58,8 @@ public class GamepadRumble : MonoBehaviour
     {
         return Gamepad.all[0]; 
     }
+    private void OnDisable()
+    {
+        StopRumble();
+    }
 }
