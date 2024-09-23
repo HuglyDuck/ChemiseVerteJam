@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScrollCurtains : MonoBehaviour
 {
@@ -10,8 +12,9 @@ public class ScrollCurtains : MonoBehaviour
     [SerializeField] private AnimationCurve _scrollDownCurve;
     [SerializeField] private AnimationCurve _scrollUpCurve;
     [SerializeField] private bool _startAtBottom = false;
-
     [SerializeField] private SplineMovement _movement;
+    [SerializeField] private GameObject _endScreen;
+    [SerializeField] private Button _nextLevelButton;
 
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
@@ -19,6 +22,12 @@ public class ScrollCurtains : MonoBehaviour
     private float _scrollTime = 0f;
     private float _scrollDuration;
     private bool _restartOnBottom = false;
+
+    
+    private float _tolerance = 0.01f;
+
+    [SerializeField] private float _restartTimeout = 1f; 
+    private float _restartTimer = 0f;
 
     private void Awake()
     {
@@ -34,13 +43,13 @@ public class ScrollCurtains : MonoBehaviour
 
     private void OnEnable()
     {
-        _movement._EndSpline += HandleEndSpline;
+        _movement._EndSpline += PrepareNextLevel;
         DetectPlayer.OnPlayerDied += HandleEndSpline;
     }
 
     private void OnDisable()
     {
-        _movement._EndSpline -= HandleEndSpline;
+        _movement._EndSpline -= PrepareNextLevel;
         DetectPlayer.OnPlayerDied -= HandleEndSpline;
     }
 
@@ -61,13 +70,23 @@ public class ScrollCurtains : MonoBehaviour
     {
         UpdateScroll();
 
-        if (Input.GetKeyDown(KeyCode.T))
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    ScrollDown();
+        //}
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    ScrollUp();
+        //}
+
+       
+        if (_restartOnBottom && Mathf.Abs(transform.position.y - _bottomLimit) <= _tolerance)
         {
-            ScrollDown();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ScrollUp();
+            _restartTimer += Time.deltaTime;
+            if (_restartTimer >= _restartTimeout)
+            {
+                ForceRestart();
+            }
         }
     }
 
@@ -87,15 +106,35 @@ public class ScrollCurtains : MonoBehaviour
             {
                 _isScrolling = false;
 
-                if (_targetPosition.y == _bottomLimit && _restartOnBottom)
+                
+                if (Mathf.Abs(_targetPosition.y - _bottomLimit) <= _tolerance && _restartOnBottom)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                    Debug.Log("Scene Restarted");
+                    _restartTimer = 0f;
                 }
             }
         }
     }
+    private void PrepareNextLevel()
+    {
+        ScrollDown();  
+        _restartOnBottom = false; 
+        StartCoroutine(EnableEndScreenWhenDown());
+    }
 
+    private IEnumerator EnableEndScreenWhenDown()
+    {
+        while (_isScrolling)
+        {
+            yield return null; 
+        }
+
+        if (Mathf.Abs(transform.position.y - _bottomLimit) <= _tolerance)
+        {
+            _endScreen.SetActive(true);
+            Time.timeScale = 0;
+            _nextLevelButton.Select();
+        }
+    }
     private void HandleEndSpline()
     {
         _restartOnBottom = true;
@@ -119,6 +158,15 @@ public class ScrollCurtains : MonoBehaviour
         _scrollTime = 0f;
         _scrollDuration = curve.keys[curve.length - 1].time;
         _isScrolling = true;
+    }
+
+    private void ForceRestart()
+    {
+        if (_restartOnBottom)
+        {
+            Debug.Log("Restart Scene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        }
     }
 
     private void OnDrawGizmos()
