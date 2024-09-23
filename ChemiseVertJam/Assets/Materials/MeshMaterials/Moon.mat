@@ -25,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AoRM:
-        m_Texture: {fileID: 2800000, guid: 452c6de1056c23a4c9f122d406d05b80, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9fda93c75b795574784161781d49c1cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: e8a9add76b58d5442a797461fdf82115, type: 3}
+        m_Texture: {fileID: 2800000, guid: 53e252e3bdd648545b1f2e50bf6a9e54, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 303ad6fa2749f5c42a85a27bcd4eccc1, type: 3}
+        m_Texture: {fileID: 2800000, guid: e782964ead1c93a41ba703d36f33d318, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
