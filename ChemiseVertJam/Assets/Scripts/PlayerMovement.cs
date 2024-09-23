@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float _currentSpeed;
     private int _speedIndex = 0;
     private GameInputs _inputActions;
-    private bool _dead = false;
+    private bool _stop = false;
 
     public event Action _eventStartMove;
     private bool _startMove = true;
@@ -28,22 +28,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        DetectPlayer.OnPlayerDied += DetectPlayer_OnPlayerDied;
+        _scriptSplineMovement._EndSpline += Stop;
+        DetectPlayer.OnPlayerDied += Stop;
         _inputActions.InGame.StopPlayer.Enable();
         _inputActions.InGame.RunPlayer.Enable();
         _inputActions.InGame.RunPlayer.performed += RunPlayer_performed;
         _inputActions.InGame.StopPlayer.performed += StopPlayer_performed;
     }
 
-    private void DetectPlayer_OnPlayerDied()
+    private void Stop()
     {
         _targetSpeed = 0;
-        _dead = true;
+        _stop = true;
     }
 
     private void RunPlayer_performed(InputAction.CallbackContext context)
     {
-        if (_dead) return;
+        if (_stop) return;
 
         if (_speedIndex == 2)
         {
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopPlayer_performed(InputAction.CallbackContext context)
     {
-        if (_dead) return;
+        if (_stop) return;
 
         if (_speedIndex == 0)
         {
@@ -87,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!_dead && DetectionManager.Instance.timer > 0)
+        if(!_stop && DetectionManager.Instance.timer > 0)
         {
             _speedIndex = 1;
             _targetSpeed = _speed;
@@ -100,7 +101,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        DetectPlayer.OnPlayerDied -= DetectPlayer_OnPlayerDied;
+        _scriptSplineMovement._EndSpline -= Stop;
+        DetectPlayer.OnPlayerDied -= Stop;
         _inputActions.InGame.StopPlayer.Enable();
         _inputActions.InGame.RunPlayer.Enable();
         _inputActions.InGame.RunPlayer.performed -= RunPlayer_performed;
