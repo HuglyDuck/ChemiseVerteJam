@@ -1093,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1342}
+  m_AnchoredPosition: {x: 0, y: -1689}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66421628
@@ -1116,10 +1116,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "asset creation 2d: \nAurore Bandiera\n\nasset creation3d:\nMarilou Hacourt\nGuyllaume
-    Decerf\nJ. Antonio Gozzi\n\nscripting:\nColin Savenberg\nNikolas Rexha\nSacha
-    Vekeman\n\nvfx:\nSacha Vekeman\nNikolas Rexha\nColin Savenberg\n\nsound design:\nEmilien
-    Dehanne\nRomain Hinant\n\ngame design:\nEmilien Dehanne"
+  m_text: "Ui Artist:\r\nDecerf Guyllaume\r\n\r\nCharacter Artist: \r\nJ.Anotnio
+    Gozzi\n\nAsset creation 2d: \nAurore Bandiera\n\nAsset creation3d:\nMarilou Hacourt\nGuyllaume
+    Decerf\nJ. Antonio Gozzi\n\nScripting:\nColin Savenberg\nNikolas Rexha\nSacha
+    Vekeman\n\nvfx:\nSacha Vekeman\nNikolas Rexha\nColin Savenberg\n\nSound design:\nEmilien
+    Dehanne\nRomain Hinant\n\nGame design:\nEmilien Dehanne\n\nFonts:\r\nBelaga from
+    MJType\r\nLa Vieste from Reyrey Blue\r\n\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60e4f5e440a065241a957d2a24bd0d60, type: 2}
   m_sharedMaterial: {fileID: -1053074623743606317, guid: 60e4f5e440a065241a957d2a24bd0d60,
@@ -5725,7 +5727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &972786474
 RectTransform:
   m_ObjectHideFlags: 0
