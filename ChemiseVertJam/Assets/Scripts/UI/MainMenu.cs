@@ -26,26 +26,33 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _creditsButton;
     [SerializeField] private Button _closeCreditsButton;
 
+
     private void Awake()
     {
         _gameInputs = new GameInputs();
     }
+
     private void OnEnable()
     {
         _gameInputs.UI.Cancel.Enable();
         _gameInputs.UI.Cancel.performed += CloseAllPanels;
     }
+
     private void OnDisable()
     {
         _gameInputs.UI.Cancel.Disable();
         _gameInputs.UI.Cancel.performed -= CloseAllPanels;
     }
+
+    
+
     public void OpenLevelsSelection()
     {
         _selectLevelPanel.SetActive(true);
         SwitchMainMenu(false);
         _levelOneButton.Select();
     }
+
     public void CloseLevelsSelection()
     {
         _selectLevelPanel.SetActive(false);
@@ -61,6 +68,7 @@ public class MainMenu : MonoBehaviour
         _mainMenuPanel.SetActive(true);
         _playGameButton.Select();
     }
+
     public void PlayLevel(int level)
     {
         SceneManager.LoadScene(level);
@@ -82,6 +90,7 @@ public class MainMenu : MonoBehaviour
         _settingsPanel.SetActive(true);
         _soundSlider.Select();
     }
+
     public void CloseSettings()
     {
         SwitchMainMenu(true);
@@ -95,6 +104,7 @@ public class MainMenu : MonoBehaviour
         _creditsPanel.SetActive(true);
         _closeCreditsButton.Select();
     }
+
     public void CloseCredits()
     {
         SwitchMainMenu(true);
