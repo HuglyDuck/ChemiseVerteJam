@@ -13,6 +13,7 @@ public class TutorialPopUp : MonoBehaviour
         _tutorialPopUp.SetActive(true);
         Time.timeScale = 0.0f;
         _backButton.Select();
+        GamepadRumble.Instance.StopRumble();
     }
 
     public void CloseTutorialPopUp()
