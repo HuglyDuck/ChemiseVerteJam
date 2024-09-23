@@ -52,6 +52,6 @@ public class AudioPlayer : MonoBehaviour
 
     private void PlayLooseSound()
     {
-        _looseSource.PlayOneShot(_looseSound);
+        //_looseSource.PlayOneShot(_looseSound);
     }
 }
