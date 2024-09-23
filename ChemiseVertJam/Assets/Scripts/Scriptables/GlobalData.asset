@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8a0e3b229835549958c6df5d0abe7c, type: 3}
   m_Name: GlobalData
   m_EditorClassIdentifier: 
-  _mainSound: -40
-  _musicSound: -40
-  _sfxSound: -40
+  _mainSound: 0.5
+  _musicSound: 0.5
+  _sfxSound: 0.5
   _brightness: 0
   _gamma: 0

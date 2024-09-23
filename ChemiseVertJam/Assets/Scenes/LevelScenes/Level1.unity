@@ -3158,7 +3158,7 @@ PrefabInstance:
     - target: {fileID: 4467210487630058684, guid: 2440f63196b207b4a94f45a11f22e1fa,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6325602097097519248, guid: 2440f63196b207b4a94f45a11f22e1fa,
         type: 3}
@@ -3642,6 +3642,10 @@ MonoBehaviour:
   _volumeStep: 0.5
   _minSpeedStep: 0
   _SpeedStep: 3
+  _sneezeSound: {fileID: 0}
+  _sneezeSource: {fileID: 0}
+  _looseSound: {fileID: 0}
+  _looseSource: {fileID: 0}
 --- !u!4 &505844933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8da7aa1d5b188c9498bd3d92f6d67867,
