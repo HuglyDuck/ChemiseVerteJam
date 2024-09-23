@@ -68,14 +68,14 @@ Material:
     - _EdgeRobertCross: 3.6
     - _EdgeScale: 3.11
     - _EdgeStepAngle: 1.56
-    - _FresenlBloom: 1
+    - _FresenlBloom: 2.12
     - _LeftValue: 0
-    - _MiddleValue: 1
+    - _MiddleValue: 0
     - _NormalThresHold: 0.25
-    - _PowerFresnel: 0.46
+    - _PowerFresnel: 3.84
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RightValue: 0
+    - _RightValue: 1
     m_Colors:
     - _EdgeColor: {r: 1, g: 0.389009, b: 0, a: 0}
     - _FresnelColor: {r: 0.7584905, g: 0.7584905, b: 0.7584905, a: 0}
