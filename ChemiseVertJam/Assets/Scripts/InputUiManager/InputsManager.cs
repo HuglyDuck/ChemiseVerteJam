@@ -9,14 +9,18 @@ public class InputsManager : MonoBehaviour
 {
     GameInputs _inputActions;
     private float _selectValue;
+
     [SerializeField] private List<GameObject> _interactObjectList = new List<GameObject>();
     private int _objectValue;
+
     private Material _currentMaterial;
     private Material _previousMaterial;
     private Material _nextMaterial;
     private Material _currentChildMaterial;
     private Material _previousChildMaterial;
     private Material _nextChildMaterial;
+
+    [SerializeField] private List<GameObject> _linkedObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -39,6 +43,12 @@ public class InputsManager : MonoBehaviour
         _inputActions.InGame.SelectObject.performed += SelectObject_performed;
     }
 
+    private void OnDisable()
+    {
+        _inputActions.InGame.Disable();
+        _inputActions.InGame.SelectObject.performed -= SelectObject_performed;
+    }
+
     private void SelectObject_performed(InputAction.CallbackContext context)
     {
         _selectValue = _inputActions.InGame.SelectObject.ReadValue<float>();
@@ -57,11 +67,7 @@ public class InputsManager : MonoBehaviour
     {
         ResetMaterials();
         OnDesactive(_interactObjectList[_objectValue]);
-        if (_objectValue >= _interactObjectList.Count - 1)
-        {
-            _objectValue = 0;
-        }
-        else _objectValue++;
+        _objectValue = (_objectValue >= _interactObjectList.Count - 1) ? 0 : _objectValue + 1;
         OnActive(_interactObjectList[_objectValue]);
     }
 
@@ -69,11 +75,7 @@ public class InputsManager : MonoBehaviour
     {
         ResetMaterials();
         OnDesactive(_interactObjectList[_objectValue]);
-        if (_objectValue <= 0)
-        {
-            _objectValue = _interactObjectList.Count - 1;
-        }
-        else _objectValue--;
+        _objectValue = (_objectValue <= 0) ? _interactObjectList.Count - 1 : _objectValue - 1;
         OnActive(_interactObjectList[_objectValue]);
     }
 
@@ -83,6 +85,7 @@ public class InputsManager : MonoBehaviour
         {
             _scriptActivateSelected.Activate();
         }
+
 
         _currentMaterial = GetObjectMaterial(_interactObject);
         _currentChildMaterial = GetChildObjectMaterial(_interactObject);
@@ -127,11 +130,7 @@ public class InputsManager : MonoBehaviour
     private Material GetObjectMaterial(GameObject obj)
     {
         Renderer renderer = obj.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            return renderer.material;
-        }
-        return null;
+        return renderer != null ? renderer.material : null;
     }
 
     private Material GetChildObjectMaterial(GameObject obj)
@@ -140,10 +139,7 @@ public class InputsManager : MonoBehaviour
         {
             GameObject child = obj.transform.GetChild(0).gameObject;
             Renderer childRenderer = child.GetComponent<Renderer>();
-            if (childRenderer != null)
-            {
-                return childRenderer.material;
-            }
+            return childRenderer != null ? childRenderer.material : null;
         }
         return null;
     }
@@ -163,27 +159,32 @@ public class InputsManager : MonoBehaviour
             _currentChildMaterial.SetFloat("_RightValue", 0);
             _currentChildMaterial.SetFloat("_MiddleValue", 1);
         }
+
+        // Changer la couleur des objets liés uniquement quand l'objet principal est surligné
+        
     }
 
-    public GameObject GetCurrentObject()
+    private void ChangeLinkedObjectsColor(float leftValue, float rightValue, float middleValue)
     {
-        if (_objectValue >= 0 && _objectValue < _interactObjectList.Count)
+        foreach (GameObject linkedObject in _linkedObjects)
         {
-            return _interactObjectList[_objectValue];
+            Material linkedMaterial = GetObjectMaterial(linkedObject);
+            Material linkedChildMaterial = GetChildObjectMaterial(linkedObject);
+
+            if (linkedMaterial != null)
+            {
+                linkedMaterial.SetFloat("_LeftValue", leftValue);
+                linkedMaterial.SetFloat("_RightValue", rightValue);
+                linkedMaterial.SetFloat("_MiddleValue", middleValue);
+            }
+
+            if (linkedChildMaterial != null)
+            {
+                linkedChildMaterial.SetFloat("_LeftValue", leftValue);
+                linkedChildMaterial.SetFloat("_RightValue", rightValue);
+                linkedChildMaterial.SetFloat("_MiddleValue", middleValue);
+            }
         }
-        return null;
-    }
-
-    public GameObject GetPreviousObject()
-    {
-        int previousIndex = (_objectValue - 1 + _interactObjectList.Count) % _interactObjectList.Count;
-        return _interactObjectList[previousIndex];
-    }
-
-    public GameObject GetNextObject()
-    {
-        int nextIndex = (_objectValue + 1) % _interactObjectList.Count;
-        return _interactObjectList[nextIndex];
     }
 
     public void ChangePreviousObjectColor()
@@ -191,14 +192,37 @@ public class InputsManager : MonoBehaviour
         if (_previousMaterial != null)
         {
             _previousMaterial.SetFloat("_LeftValue", 1);
+            _previousMaterial.SetFloat("_RightValue", 0);
+            _previousMaterial.SetFloat("_MiddleValue", 0);
         }
 
         if (_previousChildMaterial != null)
         {
-            _previousChildMaterial.SetFloat("_RightValue", 0);
             _previousChildMaterial.SetFloat("_LeftValue", 1);
+            _previousChildMaterial.SetFloat("_RightValue", 0);
             _previousChildMaterial.SetFloat("_MiddleValue", 0);
         }
+
+        // Les objets liés ne doivent pas changer quand on modifie Previous ou Next
+    }
+
+    public void ChangeNextObjectColor()
+    {
+        if (_nextMaterial != null)
+        {
+            _nextMaterial.SetFloat("_LeftValue", 0);
+            _nextMaterial.SetFloat("_RightValue", 1);
+            _nextMaterial.SetFloat("_MiddleValue", 0);
+        }
+
+        if (_nextChildMaterial != null)
+        {
+            _nextChildMaterial.SetFloat("_LeftValue", 0);
+            _nextChildMaterial.SetFloat("_RightValue", 1);
+            _nextChildMaterial.SetFloat("_MiddleValue", 0);
+        }
+
+        // Les objets liés ne doivent pas changer quand on modifie Previous ou Next
     }
 
     public void DestroyObjectColor(GameObject obj)
@@ -221,39 +245,30 @@ public class InputsManager : MonoBehaviour
         }
     }
 
+    private void DestroyLinkedObjectsColor()
+    {
+        foreach (GameObject linkedObject in _linkedObjects)
+        {
+            DestroyObjectColor(linkedObject);
+        }
+    }
+
     private void ResetMaterials()
     {
         foreach (GameObject obj in _interactObjectList)
         {
             DestroyObjectColor(obj);
-        }
-    }
-
-    public void ChangeNextObjectColor()
-    {
-        if (_nextMaterial != null)
-        {
-            _nextMaterial.SetFloat("_RightValue", 1);
+            DestroyLinkedObjectsColor();
         }
 
-        if (_nextChildMaterial != null)
-        {
-            _nextChildMaterial.SetFloat("_LeftValue", 0);
-            _nextChildMaterial.SetFloat("_RightValue", 1);
-            _nextChildMaterial.SetFloat("_MiddleValue", 0);
-        }
-    }
-
-    private void OnDisable()
-    {
-        _inputActions.InGame.Disable();
-        _inputActions.InGame.SelectObject.performed -= SelectObject_performed;
+        
     }
 
     private void Update()
     {
-        ChangeCurrentObjectColor();
         ChangePreviousObjectColor();
+        ChangeCurrentObjectColor();
         ChangeNextObjectColor();
+        ChangeLinkedObjectsColor(0, 0, 1);
     }
 }
