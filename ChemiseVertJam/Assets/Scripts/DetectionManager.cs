@@ -12,7 +12,6 @@ public class DetectionManager : MonoBehaviour
 
     private int detectionCount = 0;
 
-   
 
     private void Awake()
     {
@@ -28,12 +27,13 @@ public class DetectionManager : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (detectionCount <= 0)
         {
             timer -= Time.deltaTime * 2f;
             timer = Mathf.Clamp(timer, 0f, timerDeath);
         }
-        
     }
 
     public void PlayerDetected()

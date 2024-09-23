@@ -10111,6 +10111,8 @@ GameObject:
   - component: {fileID: 2092528683}
   - component: {fileID: 2092528682}
   - component: {fileID: 2092528687}
+  - component: {fileID: 2092528688}
+  - component: {fileID: 2092528689}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -10211,6 +10213,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDeath: 2
   timer: 0
+--- !u!114 &2092528688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092528681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16674f4d3a99bba43a741e744686abe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fullScreen: {fileID: 2100000, guid: 8742ce4d0d2d2f34081dc538489b3577, type: 2}
+--- !u!114 &2092528689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092528681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45b19e7a1a100a409d689295f8b0dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2099080873
 PrefabInstance:
   m_ObjectHideFlags: 0
