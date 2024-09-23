@@ -17,14 +17,19 @@ public class AudioPlayer : MonoBehaviour
     private bool _isPlaying = true;
     private float _timerStep;
 
+    [SerializeField] private AudioClip _looseSound;
+    [SerializeField] private AudioSource _looseSource;
+
     private void OnEnable()
     {
         FocusLight._atchoum += PlaySneezeSound;
+        DetectPlayer.OnPlayerDied += PlayLooseSound;
     }
 
     private void OnDisable()
     {
         FocusLight._atchoum -= PlaySneezeSound;
+        DetectPlayer.OnPlayerDied += PlayLooseSound;
     }
 
     private void Update()
@@ -43,5 +48,10 @@ public class AudioPlayer : MonoBehaviour
     private void PlaySneezeSound()
     {
        _sneezeSource.PlayOneShot(_sneezeSound);
+    }
+
+    private void PlayLooseSound()
+    {
+        _looseSource.PlayOneShot(_looseSound);
     }
 }
