@@ -44,7 +44,7 @@ Material:
     m_Floats:
     - _Activate: 0
     - _ColorIntensity: 8.74
-    - _Mask: 0
+    - _Mask: 1
     - _SpeedFactor: -0.44
     m_Colors:
     - _DistortionControl: {r: 13.67, g: 1.4, b: 0, a: 0}
