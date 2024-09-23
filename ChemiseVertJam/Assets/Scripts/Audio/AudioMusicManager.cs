@@ -8,7 +8,7 @@ public class AudioMusicManager : MonoBehaviour
 
     public AudioClip[] ambiance1;
     public AudioClip[] ambiance2;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private string currentMusicPlaying = "";
 
     private void Awake()
