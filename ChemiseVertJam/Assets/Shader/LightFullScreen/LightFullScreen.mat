@@ -42,9 +42,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Activate: 0
+    - _Activate: 0.02
     - _ColorIntensity: 8.74
-    - _Mask: 1
+    - _Mask: 0.98
     - _SpeedFactor: -0.44
     m_Colors:
     - _DistortionControl: {r: 13.67, g: 1.4, b: 0, a: 0}
