@@ -90,8 +90,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!_stop && DetectionManager.Instance.timer > 0)
         {
-            _speedIndex = 1;
-            _targetSpeed = _speed;
+            if (_speedIndex == 0)
+            {
+                _speedIndex = 0;
+                _targetSpeed = 0;
+            }
+            else
+            {
+                _speedIndex = 1;
+                _targetSpeed = _speed;
+            }
+            
         }
 
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, _targetSpeed, _moveTowardSpeed * Time.deltaTime);
